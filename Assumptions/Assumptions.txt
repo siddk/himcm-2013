@@ -1,0 +1,9 @@
+Assumptions:
+
+1. The travel times given are the average travel time of an optimal route which, by way of the 4-color proof, must occassionally pass through other zones.
+
+2. For travel time within zones, we assume Normal Distributions of travel time from one area of a zone to a
+
+3. Center is the center of population density
+
+4. We can only place ambulances in the centers of zones
