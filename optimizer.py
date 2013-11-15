@@ -1,27 +1,24 @@
+import numpy as np
 import itertools
-#from data import traveltimes, populations
+from data import traveltimes, populations
 
 
-def overlap(a1, a2, a3=None):
+def reach(start, target):
     '''
-    Calculates overlap between ambulances
-    '''
-    if a3 is not None:
-        return 0
-    pass
-
-
-def reach(a1):
-    '''
-    Calculates reach of a single ambulance
+    Calculates reach of a single ambulance for a district
     '''
     pass
+
+reaches = np.zeros((6, 6))
+for i in xrange(6):
+    for j in xrange(6):
+        reaches[i, j] = reach(i, j)
 
 maxreach = 0
 optimal = (0, 1, 2)
 for a1, a2, a3 in itertools.combinations(xrange(6), 3):
-    reach = (reach(a1) + reach(a2) + reach(a3) -
-             overlap(a1, a2) - overlap(a1, a3) - overlap(a2, a3) +
-             overlap(a1, a2, a3))
-    if reach > maxreach:
+    totalreach = 0
+    for i in xrange(6):
+        totalreach += min(populations[i], sum([reaches[a, i] for a in (a1, a2, a3)]))
+    if totalreach > maxreach:
         optimal = (a1, a2, a3)
