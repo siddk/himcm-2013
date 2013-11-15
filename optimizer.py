@@ -2,7 +2,8 @@ import numpy as np
 import itertools
 from data import traveltimes, populations
 
-reaches = np.zeros((6, 6))
+NODES = 6
+reaches = np.zeros((NODES, NODES))
 
 
 def reach(start, target):
@@ -13,19 +14,36 @@ def reach(start, target):
 
 
 def calcreaches():
-    global reaches
-    for i in xrange(6):
-        for j in xrange(6):
+    for i in xrange(NODES):
+        for j in xrange(NODES):
             reaches[i, j] = reach(i, j)
 
 
-def bruteforce():
+def greedyoptimize(nambulances):
+    reached = np.zeros(NODES)
+    startnodes = np.empty(nambulances)
+    for i in xrange(nambulances):
+        maxreach = 0
+        bestnode = 0
+        for start in xrange(NODES):
+            reach = 0
+            for target in xrange(NODES):
+                reach += min(reaches[start, target], populations[target] - reached[target])
+            if reach > maxreach:
+                maxreach = reach
+                bestnode = start
+        startnodes[i] = bestnode
+        for target in xrange(NODES):
+            reached[target] += min(reaches[start, target], populations[target] - reached[target])
+    return (startnodes, reached)
+
+
+def bruteforce(nambulances):
     maxreach = 0
-    optimal = (0, 1, 2)
-    for a1, a2, a3 in itertools.combinations(xrange(6), 3):
+    for startingnodes in itertools.combinations(xrange(NODES), nambulances):
         totalreach = 0
-        for i in xrange(6):
-            totalreach += min(populations[i], sum([reaches[a, i] for a in (a1, a2, a3)]))
+        for i in xrange(NODES):
+            totalreach += min(populations[i], sum([reaches[a, i] for a in startingnodes]))
         if totalreach > maxreach:
-            optimal = (a1, a2, a3)
+            optimal = startingnodes
     return optimal
