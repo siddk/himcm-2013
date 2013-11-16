@@ -35,7 +35,7 @@
 \maketitle
 
 \tableofcontents
-\newpage
+
 \section{Problem Restatement}
 Given a county made up of six separate zones and average travel times between zones, create a model to optimize the placement of $n$ ambulances in order to maximize the number of civilians reached in an eight minute period. Consider the scenarios where $n = 3$, $n = 2$, and $n = 1$, respectively, and for each scenario, keep track of how many people are not being reached with each possible solution.
 
@@ -237,8 +237,21 @@ in a rural or suburban area. Therefore, when the city lays out its stations for 
 travel times to any area, it should put significantly more weight on minimizing travel time to metropolitan areas.
 
 \section{Strengths and Weaknesses}
-Our program is readily scalable to larger cities and larger numbers of ambulances, and due to using an
-efficient greedy heuristic it runs in polynomial time.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ p{6.25cm}|p{6.25cm} }
+        \textbf{Strengths} & \textbf{Weaknesses}\\
+        \hline
+        1. Our model, by virtue of its polynomial-time greedy selection algorithm, is extremely scalable. We can scale up to large datasets, consisting of many, larger zones. Also, because of a non-exponential time algorithm, our model is also extremely efficient. & 1. Because of the greedy nature of our algorithm, we are not guaranteed to find the optimal solution for the location of the ambulances.\\ 
+        2. Our model is also adaptable to various different population distributions. Population Distributions can vary with the addition of any new data. The more accurate the data, the more accurate the model becomes. & 2. In order to find the optimal solution, our brute force optimizer works in exponential time, so at a large scale, finding the optimal placement of ambulances is near impossible. \\
+        3. Completely flexible model. Depending on any number of nodes, any number of ambulances, and any population distribution, we will be able to find a good answer relatively quickly. 
+        
+    \end{tabular}
+    \caption{Model Strengths \& Weaknesses}
+    \label{tab:modelprocons}
+\end{table}
+
 
 \section{Extensions}
 Though our model performs fairly well already, providing us with the optimal locations of our $n$ ambulances to
@@ -294,6 +307,7 @@ this methodology is realistically the one an Emergency Service Coordinator would
 
 \section{Non-Technical Memo}
 
+\newpage
 \appendix
 \section{Code}
 The following contains the code for both our brute force location optimizer, as well as the greedy optimizer. Both functions take a parameter $nambulances$, representing the total number of ambulances we have to allocate across the county.
