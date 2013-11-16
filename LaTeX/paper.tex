@@ -41,7 +41,6 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 
 \section{Assumptions and Justifications}
-<<<<<<< HEAD
 \begin{description}
     \item[1. Zone to Zone Travel] \hfill \\
     	The travel times given are calculated from an optimal route from the center of the first
@@ -52,18 +51,6 @@ Then, consider a scenario in which a large scale disaster affects a single locat
         of all the travel times of the different routes within that zone.
     \item[3. Zone Directional Travel] \hfill \\
     	The ratio between the time it takes inside a zone to travel toward a second zone,
-=======
-\begin{enumerate}
-    \item
-        The travel times given are calculated from an optimal route from the center of the first
-        zone to the center of ths econd. This excludes the possibility of reaching a zone faster
-        via an indirect route from the direct, given one.
-    \item
-        The travel times given for travel from any zone to itself is the average
-        of all the travel times of the different routes within that zone.
-    \item
-        The ratio between the time it takes inside a zone to travel toward a second zone,
->>>>>>> 80cbb139788c430e26bf899f883bc19f1ae34850
         to the time it takes inside a zone to return from a second, is equal to the ratio
         between the travel time from the first zone to the second, and the travel time from the
         second to the first.
@@ -71,21 +58,12 @@ Then, consider a scenario in which a large scale disaster affects a single locat
         Ambulances can only be placed in the very center of a zone. Because we do not know the
         spacial position of the zones relative to each other, we cannot consider the ambulances
         being closer to one zone or another.
-<<<<<<< HEAD
     \item[5. Partial Coverage] \hfill \\
         Partial ambulance coverage of a zone will be treated as imcomplete even coverage over the entire
         zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
-        that multiple ambulances will cover different areas of the zones, thus evening out coverage.
-\end{description}
-=======
-    \item
-        Partial ambulance coverage of a zone will be treated as incomplete even coverage over the entire
-        zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
-        that multiple ambulances will cover different areas of the zones, thus evening out coverage.
-        (If partial coverages from multiple ambulances sum to above the total population of a zone,
+        that multiple ambulances will cover different areas of the zones, thus evening out coverage. (If partial coverages from multiple ambulances sum to above the total population of a zone,
         we assume that zone is completely covered by the ambulances.)
-\end{enumerate}
->>>>>>> 80cbb139788c430e26bf899f883bc19f1ae34850
+\end{description}
 
 \section{The Model}
 

@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex paper"] 1384615602 "paper.aux" "paper.bbl" "paper" 1384615603
+["bibtex paper"] 1384616117 "paper.aux" "paper.bbl" "paper" 1384616118
   "/usr/local/texlive/2012/texmf-dist/bibtex/bst/chicago/chicago.bst" 1198629289 37416 2ae04276c51f11eda70770f4081293b7 ""
   "bibliography.bib" 0 -1 0 ""
-  "paper.aux" 1384615602 1427 7c59b813caaadd56875c1f050a00fa50 ""
+  "paper.aux" 1384616118 1465 5d6e916d56dabaa64bb5ad849349f8fe ""
   "paper.bcf" 0 -1 0 ""
   (generated)
   "paper.blg"
   "paper.bbl"
-["pdflatex"] 1384615602 "paper.tex" "paper.pdf" "paper" 1384615603
+["pdflatex"] 1384616117 "paper.tex" "paper.pdf" "paper" 1384616118
   "/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -42,10 +42,10 @@
   "/usr/local/texlive/2012/texmf-dist/tex/latex/preprint/fullpage.sty" 1137110595 2789 05b418f78b224ec872f5b11081138605 ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/setspace/setspace.sty" 1324344192 22913 a27d7908fc6f0385466454a966a316eb ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "paper.aux" 1384615602 1427 7c59b813caaadd56875c1f050a00fa50 ""
+  "paper.aux" 1384616118 1465 5d6e916d56dabaa64bb5ad849349f8fe ""
   "paper.bbl" 0 -1 0 "bibtex paper"
-  "paper.tex" 1384615601 10345 20598b492c0fd23eacb3b6fceb05ded1 ""
-  "paper.toc" 1384615602 1071 74a5c1b691c3b82a150ab9dbd44e6db7 ""
+  "paper.tex" 1384616115 12458 d92bf9cae299ab3fd672ae34f8345652 ""
+  "paper.toc" 1384616118 1109 ce4f3f33df5e1def37491295161bf8cb ""
   (generated)
   "paper.toc"
   "paper.pdf"
