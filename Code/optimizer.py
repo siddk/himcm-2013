@@ -48,7 +48,7 @@ def calc_cover(start, target):
     if b_start > b_end:
         return 0
     return int(integrate(PROB_CURVE(b, t), (t, b_start, b_end)) *
-               populations[target], round='standard')
+               populations[target] + 0.5)
 
 
 for i in xrange(NODES):

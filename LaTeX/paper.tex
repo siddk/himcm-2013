@@ -189,10 +189,17 @@ With the given county, made up of six zones, we consider the location optimizati
 The number of people the ambulances are able to cover is a function of our population density function, while the actual location optimization is done by our greedy optimizer.
 
 \subsubsection{$n=3$}
+We ran the greedy algorithm for $n=3$ and we got that ambulances should be placed in zones
+2, 3, and 5. This arrangement has ambulances cover all of zones 2-6 and half (25000/50000) of
+zone 1.
 
 \subsubsection{$n=2$}
+We ran the greedy algorithm for $n=2$ and we got that ambulances should be placed in zones
+2 and 5. This arrangement has ambulances cover all of zones 2, 4-6, half (25000/50000) of
+zone 1, and none of zone 3.
 
 \subsubsection{$n=1$}
+We ran the greedy algorithm for $n=1$ and we got that our ambulance should be placed in zone 5. This arrangement allows the single ambulance to cover all of zone 4-6.
 
 \subsection{Localized Single Zone Disaster}
 In a localized catastrophic event such as those that happened on September 11, 2001, there will be
@@ -215,6 +222,8 @@ in a rural or suburban area. Therefore, when the city lays out its stations for 
 travel times to any area, it should put significantly more weight on minimizing travel time to metropolitan areas.
 
 \section{Strengths and Weaknesses}
+Our program is readily scalable to larger cities and larger numbers of ambulances, and due to using an
+efficient greedy heuristic it runs in polynomial time.
 
 \section{Extensions}
 Though our model performs fairly well already, providing us with the optimal locations of our $n$ ambulances to
