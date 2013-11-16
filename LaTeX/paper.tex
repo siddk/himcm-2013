@@ -105,7 +105,6 @@ A lack of spatial understanding of the county entails the use of a different typ
   \caption{TODO(drew)}
   \label{fig:sub2}
 \end{subfigure}
-\caption{Overarching caption whatever}
 \label{fig:test}
 \end{figure}
 
@@ -115,22 +114,6 @@ The population that the ambulance can cover in a second zone from a first zone (
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=3.5in]{A(t)B(t).png}
-\caption{TODO(drew)}
-\label{A(t)B(t)}
-\end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=3.5in]{6point.pdf}
-\caption{TODO(drew)}
-\label{A(t)B(t)}
-\end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=3.5in]{greedy6point.pdf}
 \caption{TODO(drew)}
 \label{A(t)B(t)}
 \end{center}
@@ -230,6 +213,22 @@ With the given county, made up of six zones, we consider the location optimizati
 The number of people the ambulances are able to cover is a function of our population density function, while the actual location optimization is done by our greedy optimizer.
 
 \subsubsection{$n=3$}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=3in]{6point.pdf}
+\caption{Graph of zones, populations, and travel times}
+\end{center}
+\label{fig:fullgraph}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=3in]{greedy6point.pdf}
+\caption{Graph as in fig. \ref{fig:fullgraph}, with edges longer than 8 minutes removed}
+\end{center}
+\end{figure}
+
 We ran the greedy algorithm for $n=3$ and we got that ambulances should be placed in zones
 2, 3, and 5. This arrangement has ambulances cover all of zones 2-6 and half (25000/50000) of
 zone 1.
