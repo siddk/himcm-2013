@@ -41,6 +41,7 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 
 \section{Assumptions and Justifications}
+<<<<<<< HEAD
 \begin{description}
     \item[1. Zone to Zone Travel] \hfill \\
     	The travel times given are calculated from an optimal route from the center of the first
@@ -51,6 +52,18 @@ Then, consider a scenario in which a large scale disaster affects a single locat
         of all the travel times of the different routes within that zone.
     \item[3. Zone Directional Travel] \hfill \\
     	The ratio between the time it takes inside a zone to travel toward a second zone,
+=======
+\begin{enumerate}
+    \item
+        The travel times given are calculated from an optimal route from the center of the first
+        zone to the center of ths econd. This excludes the possibility of reaching a zone faster
+        via an indirect route from the direct, given one.
+    \item
+        The travel times given for travel from any zone to itself is the average
+        of all the travel times of the different routes within that zone.
+    \item
+        The ratio between the time it takes inside a zone to travel toward a second zone,
+>>>>>>> 80cbb139788c430e26bf899f883bc19f1ae34850
         to the time it takes inside a zone to return from a second, is equal to the ratio
         between the travel time from the first zone to the second, and the travel time from the
         second to the first.
@@ -58,17 +71,27 @@ Then, consider a scenario in which a large scale disaster affects a single locat
         Ambulances can only be placed in the very center of a zone. Because we do not know the
         spacial position of the zones relative to each other, we cannot consider the ambulances
         being closer to one zone or another.
+<<<<<<< HEAD
     \item[5. Partial Coverage] \hfill \\
         Partial ambulance coverage of a zone will be treated as imcomplete even coverage over the entire
         zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
         that multiple ambulances will cover different areas of the zones, thus evening out coverage.
 \end{description}
+=======
+    \item
+        Partial ambulance coverage of a zone will be treated as incomplete even coverage over the entire
+        zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
+        that multiple ambulances will cover different areas of the zones, thus evening out coverage.
+        (If partial coverages from multiple ambulances sum to above the total population of a zone,
+        we assume that zone is completely covered by the ambulances.)
+\end{enumerate}
+>>>>>>> 80cbb139788c430e26bf899f883bc19f1ae34850
 
 \section{The Model}
 
 \subsection{Model Approach}
 
-\subsection{Part 1?}
+\subsection{Zone-to-Zone Population Dynamics}
 An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
 that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be hereafter referred to as
 zone-to-zone coverage.
@@ -79,6 +102,7 @@ zone-to-zone coverage.
     \item[$T_{AB}$] travel time from A to B, given
     \item[$T_{BA}$] travel time from B to A, given
     \item[$P_B$] total population of B
+    \item[$F_B(s)$] the probability curve for differences in travel time within B
     \item[$T_{A^+}$] travel time inside of A traveling away from B
     \item[$T_{A^-}$] travel time inside of A traveling toward B
     \item[$T_{B^+}$] travel time inside of B traveling away from A
@@ -88,12 +112,34 @@ zone-to-zone coverage.
 \end{description}
 
 %TODO: Graphical representation of origin and setup
+
 The function for zone-to-zone coverage in respect to travel time can be written out as 
-$$Z_{AB}(t) = P_B * \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
+$$Z_{AB}(t) = P_B \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
+In order to find the width of zone B, b, we can take the probability curve of differences in travel time within B, $F_B(s)$, and find the average travel time within B. This is the average difference in travel time, and is equal to $T_{B+}$. 
+$$T_{B+} = \int^{T_{AB}}_{T_{AB} - b} s F_B(s) ds$$
 
+\subsection{Ambulance Distributon Optimization}
+Once the zone-to-zone coverages have been calculated, we must still decide where to place
+the ambulances to maximize total coverage. Total coverage is defined as the sum of the coverages
+of the individual zones, i.e. the number of people that can be reached by at least one ambulance
+within eight minutes.
 
-\subsection{Ambulance Distributor}
-Once the zone-to-zone coverages have been
+Since ambulance placements are assumed to be in the center of zones, putting two ambulances in the same
+zone does not increase coverage. Therefore, ambulances should be placed in different zones to maximize
+coverage.
+
+Under the given conditions, we can easily find the optimal ambulance placement using a brute force
+method: trying all $\binom{6}{3}$ choices of ambulance placements, and picking the one with the highest total coverage.
+However, this solution is not scalable to larger cities, as the brute force method has time complexity
+$O(n) = nk\binom{n}{k}$ where $n$ is the number of zones to cover, and $k$ is the number of ambulances to place, which
+becomes intractable as $n$ and $k$ increase (since it has to check $\binom{n}{k}$ placements,
+and calculating the total coverage of each placement requires $nk$ computations, summing the $k$ zone-zone
+coverages for each of the $n$ ambulances). Quadrupling the size of the city
+increases the computations required by a factor of 2 million (assuming the average zone size stays the same,
+and the number of ambulances increases proportionally).
+
+Therefore, a more scalable solution is needed. We discovered that a greedy heuristic also gives a good solution,
+except with a much lower time complexity of $O(n) = n^2k$.
 
 \section{Model Analysis}
 
