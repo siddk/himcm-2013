@@ -6,7 +6,7 @@
 
 \usepackage{url}
 \usepackage{caption}
-\usepackage{fullpage}
+% \usepackage{fullpage}
 \usepackage{fancyhdr}
 \usepackage{amsmath}
 \usepackage{subcaption}
@@ -16,13 +16,13 @@
 \usepackage{setspace}
 \graphicspath{{./Pictures/}}
 
-% \pagestyle{fancy}
-% \lhead{Team 4552}
-% \chead{Problem A}
-% \rhead{}
+\pagestyle{fancy}
+\lhead{Team 4552}
+\chead{Problem A}
+\rhead{\thepage}
 
-% \renewcommand{\headrulewidth}{0.8pt}
-% \renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{.8pt}
+%\renewcommand{\footrulewidth}{.8pt}
 
 \title{\textbf{Emergency Service Location Optimization in a Multi-Zone District based on Population Distribution}}
 \author{Team 4552}
@@ -138,13 +138,15 @@ except with a much lower time complexity of $O(n) = n^2k$.
 
 \section{Model Analysis}
 
-\subsection{3 Ambulance Cover}
+\subsection{The $n$ Ambulance Problem}
 
-\subsection{2 Ambulance Cover}
+\subsubsection{$n=3$ Problem}
 
-\subsection{1 Ambulance Cover}
+\subsubsection{$n=2$ Problem}
 
-\subsection{Catastrophic Cover}
+\subsubsection{$n=1$ Problem}
+
+\subsection{Localized Single Zone Disaster}
 In a localized catastrophic event such as those that happened on September 11, 2001, there will be
 many casualties in a single location that require aid. Ambulances, and other emergency vehicles,
 such as police cars and fire trucks, will need to respond quickly in order to aid the most critically
