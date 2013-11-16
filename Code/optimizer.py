@@ -4,11 +4,14 @@ from sympy import Function, integrate
 import itertools
 from data import traveltimes, populations
 
-NODES = 6
+NODES = 6  # number of nodes to care about
+MAX_TIME = 8  # maximum allotted time to reach a destination
 reaches = np.zeros((NODES, NODES))
 
 a, x, s, t = sp.symbols('a, x, s, t')
 
+
+# Probability/population distribution curves. Who knows what these do.
 
 class quad_curve(Function):
     nargs = 2
@@ -33,17 +36,14 @@ class gauss_curve(Function):
     def eval(cls, a, x):
         return 0  # TODO
 
-PROB_CURVE = quad_curve
-MAX_TIME = 8
+PROB_CURVE = quad_curve  # selected model for population distribution
 
-expected_value = integrate(integrate(PROB_CURVE(a, t) * PROB_CURVE(a, t - s),
-                                     (t, -a / 2, a / 2)) * s,
-                           (s, 0, a))
+expected_value = integrate(integrate(PROB_CURVE(a, t) * PROB_CURVE(a, t - s), (t, -a / 2, a / 2)) * s, (s, 0, a))
 
 
 def reach(start, target):
     '''
-    Calculates reach of a single ambulance for a district
+    Calculates reach of a single ambulance for a district.
     '''
     #taa = traveltimes[start, start]
     tbb = traveltimes[target, target]
@@ -66,6 +66,11 @@ for i in xrange(NODES):
 
 
 def greedyoptimize(nambulances):
+    '''
+    Optimize ambulance placement using a greedy algorithm.
+    Selects additional ambulances based on how
+    many additional people it would cover.
+    '''
     reached = np.zeros(NODES)
     startnodes = np.empty(nambulances)
     for i in xrange(nambulances):
@@ -73,7 +78,7 @@ def greedyoptimize(nambulances):
         bestnode = 0
         for start in xrange(NODES):
             if start in startnodes:
-                continue  # don't duplicate
+                continue  # don't duplicate zones
             reach = 0
             for target in xrange(NODES):
                 reach += min(reaches[start, target], populations[target] - reached[target])
@@ -87,7 +92,11 @@ def greedyoptimize(nambulances):
 
 
 def bruteforce(nambulances):
-    maxreach = np.zeros(1)
+    '''
+    Takes all possible combinations of nambulances from NODES,
+    and arranges them so that there is maximum coverage among zones.
+    '''
+    maxreach = np.zeros(NODES)
     for startingnodes in itertools.combinations(xrange(NODES), nambulances):
         reached = np.zeros(NODES)
         for target in xrange(NODES):
