@@ -236,10 +236,16 @@ zone 1.
 \subsubsection{$n=2$}
 We ran the greedy algorithm for $n=2$ and we got that ambulances should be placed in zones
 2 and 5. This arrangement has ambulances cover all of zones 2, 4-6, half (25000/50000) of
-zone 1, and none of zone 3.
+zone 1, and half (28333/55000) of zone 3.
 
 \subsubsection{$n=1$}
-We ran the greedy algorithm for $n=1$ and we got that our ambulance should be placed in zone 5. This arrangement allows the single ambulance to cover all of zone 4-6.
+We ran the greedy algorithm for $n=1$ and we got that our ambulance should be placed in zone 2.
+This arrangement allows the single ambulance to cover all of zone 2, half (25000/5000) of zone 1,
+and half (28333/55000) of zone 3.
+
+For all of these scenarios, our greedy heuristic got the exact same answer as the
+brute-force algorithm, guaranteeing an optimal answer, which indicates that our greedy heuristic
+is good. %TODO make sound good
 
 \subsection{Localized Single Zone Disaster}
 In a localized catastrophic event such as those that happened on September 11, 2001, there will be
