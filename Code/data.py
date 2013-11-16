@@ -16,4 +16,4 @@ traveltimes = np.array([[1, 8, 12, 14, 10, 16],
 Populations of each sector.
 0-indexed, watch out!
 '''
-populations = np.array((5e4, 8e4, 3e4, 5.5e4, 3.5, 2e4))
+populations = np.array((5e4, 8e4, 3e4, 5.5e4, 3.5e4, 2e4))
