@@ -164,20 +164,25 @@ increases the computations required by a factor of 2 million (assuming the avera
 and the number of ambulances increases proportionally).
 
 Therefore, a more scalable solution is needed. We discovered that a greedy heuristic also gives a good solution,
-except with a much lower time complexity of $O(n, k) = n k^2$. The greedy heuristic works by assigning ambulances to zones
+except with a much lower time complexity of $O(n, k) = n k^2$. The greedy heuristic works by assigning ambulances to zones 
 one at a time. For each assignment, we iterate through each zone without an ambulance already assigned, and see how many
 additional people it would cover; then we assign an ambulance to the zone which would most increase the number of
-covered people.
+covered people. 
 
 \section{Model Analysis}
 
 \subsection{The $n$ Ambulance Problem}
+With the $n$ ambulance problem, we are trying to figure out where to place each of the $n$ ambulances so that the reach of each ambulance covers the most amount of people. For our purposes, this reach is solely determined by how far the ambulance can travel in an eight minute span.  
 
-\subsubsection{$n=3$ Problem}
+With the given county, made up of six zones, we consider the location optimization under three scenarios; with three ambulances, with two ambulances, and finally, with one ambulance. Our goal is to see a) if we can cover everybody in the county in an eight minute span, and b) if not, how many people are we failing to cover.
 
-\subsubsection{$n=2$ Problem}
+The number of people the ambulances are able to cover is a function of our population density function, while the actual location optimization is done by our greedy optimizer. 
 
-\subsubsection{$n=1$ Problem}
+\subsubsection{$n=3$}
+
+\subsubsection{$n=2$}
+
+\subsubsection{$n=1$}
 
 \subsection{Localized Single Zone Disaster}
 In a localized catastrophic event such as those that happened on September 11, 2001, there will be
