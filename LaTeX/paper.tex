@@ -35,9 +35,15 @@
 \tableofcontents
 \newpage
 \section{Problem Restatement}
-Given a district made up of six separate zones and average travel times between zones, create a model to optimize the placement of $n$ ambulances in order to maximize the number of civilians reached in an eight minute period. Consider the scenarios where $n = 3$, $n = 2$, and $n = 1$, respectively, and for each scenario, keep track of how many people are not being reached with each possible solution.
+Given a district made up of six separate zones and average travel times between zones, create a model
+to optimize the placement of $n$ ambulances in order to maximize the number of civilians reached in an
+eight minute period. Consider the scenarios where $n = 3$, $n = 2$, and $n = 1$, respectively, and for
+each scenario, keep track of how many people are not being reached with each possible solution.
 
-Then, consider a scenario in which a large scale disaster affects a single location (e.g. the September 11th attacks), and discuss how an Emergency Service Coordinator would cover the situation. Examine how a real-world city or district would prepare for such a disaster. Finally, write a two page memo detailing the model and its analysis for the Emergency Service Coordinator.
+Then, consider a scenario in which a large scale disaster affects a single location (e.g. the September 11th attacks),
+and discuss how an Emergency Service Coordinator would cover the situation. Examine how a real-world city or
+district would prepare for such a disaster. Finally, write a two page memo detailing the model and its analysis
+for the Emergency Service Coordinator.
 
 
 \section{Assumptions and Justifications}
@@ -49,7 +55,8 @@ Then, consider a scenario in which a large scale disaster affects a single locat
     	A district is another name for a county. ... TODO(drew)
         Travel...
     \item[2. Zone to Zone Travel] \hfill \\
-    	The travel times given are considered to be optimal routes from the center of one zone to the center of the another, regardless of any other zones that may lie in between.
+    	The travel times given are considered to be optimal routes from the center of one zone to
+        the center of the another, regardless of any other zones that may lie in between.
     \item[3. Travel Inside Each Zone] \hfill \\
     	The travel times given for travel from any zone to itself is the average
         of all the travel times of the different routes within that zone.
@@ -65,7 +72,8 @@ Then, consider a scenario in which a large scale disaster affects a single locat
     \item[6. Partial Coverage] \hfill \\
         Partial ambulance coverage of a zone will be treated as incomplete even coverage over the entire
         zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
-        that multiple ambulances will cover different areas of the zones, thus evening out coverage. (If partial coverages from multiple ambulances sum to above the total population of a zone,
+        that multiple ambulances will cover different areas of the zones, thus evening out coverage.
+        (If partial coverages from multiple ambulances sum to above the total population of a zone,
         we assume that zone is completely covered by the ambulances.)
 \end{description}
 
@@ -75,7 +83,8 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 \subsection{Zone-to-Zone Population Dynamics}
 An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
-that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be hereafter referred to as zone-to-zone coverage.
+that the ambulance can cover in a second zone from a first zone (not necessarily distinct),
+will be hereafter referred to as zone-to-zone coverage.
 \begin{description}
     \item[$\mathbf{A(t), B(t)}$] \hfill \\
     	Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution
@@ -114,13 +123,17 @@ that the ambulance can cover in a second zone from a first zone (not necessarily
 The function for zone-to-zone coverage in respect to travel time can be written out as
 $$Z_{AB}(t) = P_B \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
 
-In order to find the width of zone B, b, we can take the probability curve of differences in travel time within B, $F_B(s)$, and find the average travel time within B. This is the average difference in travel time, and is equal to $T_{B+}$.
+In order to find the width of zone B, b, we can take the probability curve of differences in travel time within B,
+$F_B(s)$, and find the average travel time within B. This is the average difference in travel time, and is equal to $T_{B+}$.
 $$T_{B+} = \int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} s F_B(s) ds$$
 
-The probability curve of differences in travel time within B, $F_B(s)$, can be found by performing a cross-correlation of $B(t)$ on itself, with $s$ being the difference in travel time plotted against frequency.
+The probability curve of differences in travel time within B, $F_B(s)$, can be found by performing a cross-correlation
+of $B(t)$ on itself, with $s$ being the difference in travel time plotted against frequency.
 $$P_B(s) =\int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} B(t) * B(t-s) dt$$
 
-The average travel time in the direction of A to B inside of A, $T_{A-}$, and the average travel time in the direction of B to A inside of A, $T_{A+}$, have a total average travel time of $T_A$. We can also write the ratio of $T_{A+}$ and $T_{A-}$, which is equivalent to the ratio of $T_{BA}$ and $T_{AB}$. The same can be done with $T_{B}$.
+The average travel time in the direction of A to B inside of A, $T_{A-}$, and the average travel time in the direction of B to A
+inside of A, $T_{A+}$, have a total average travel time of $T_A$. We can also write the ratio of $T_{A+}$ and $T_{A-}$,
+which is equivalent to the ratio of $T_{BA}$ and $T_{AB}$. The same can be done with $T_{B}$.
 $$T_A = \frac{T_{A+} + T_{A-}}{2}$$
 $$\frac{T_{A+}}{T_{A-}} = \frac{T_{BA}}{T_{AB}}$$
 $$\frac{T_{B+}}{T_{B-}} = \frac{T_{AB}}{T_{BA}}$$
@@ -186,21 +199,39 @@ travel times to any area, it should put significantly more weight on minimizing 
 \section{Strengths and Weaknesses}
 
 \section{Extensions}
-Though our model performs fairly well already, providing us with the optimal locations of our $n$ ambulances to maximize the number of people saved, there are a number of ways we can improve the model so that we can make more accurate predictions as to the number of people we can reach in an eight minute period. Furthermore, we can also improve the overall efficiency of the solution algorithm itself, by looking at potential dynamic programming approaches to the problem.
+Though our model performs fairly well already, providing us with the optimal locations of our $n$ ambulances to
+maximize the number of people saved, there are a number of ways we can improve the model so that we can make more
+accurate predictions as to the number of people we can reach in an eight minute period. Furthermore, we can also
+improve the overall efficiency of the solution algorithm itself, by looking at potential dynamic programming approaches to the problem.
 
-While any algorithmic changes may not be necessary with only six zones, and a maximum of $n = 3$ ambulances, if we scale this problem up to a large city, or across multiple counties, algorithm efficiency becomes an important problem that requires attention.
+While any algorithmic changes may not be necessary with only six zones, and a maximum of $n = 3$ ambulances, if
+we scale this problem up to a large city, or across multiple counties, algorithm efficiency becomes an important problem that requires attention.
 
 \subsection{Population Distribution}
-As it currently stands, we have very little information regarding the actual population distribution of each zone in the scope of the district, which provides us with a slightly skewed perception. While we justified the use of a standard distribution for population above, we have the ability to greatly improve our model with a better idea of how spread out a population of a zone actually is, in relation to its epicenter. This information allows us to better predict how many people an ambulance would miss (not be able to cover) in a certain zone.
+As it currently stands, we have very little information regarding the actual population distribution of each
+zone in the scope of the district, which provides us with a slightly skewed perception. While we justified the
+use of a standard distribution for population above, we have the ability to greatly improve our model with a
+better idea of how spread out a population of a zone actually is, in relation to its epicenter. This information
+allows us to better predict how many people an ambulance would miss (not be able to cover) in a certain zone.
 
-The number of missed people is an important statistic that an Emergency Service Coordinator needs to have in order to fully optimize their resources. In our system now, we predict this number with a certain level of accuracy, but we are still prone to a relatively large amount of error. With a better understanding of the population and geospacial makeup of each individual zone, we would be able to better optimize our resources and potentially save more people.
+The number of missed people is an important statistic that an Emergency Service Coordinator needs to have in
+order to fully optimize their resources. In our system now, we predict this number with a certain level of accuracy,
+but we are still prone to a relatively large amount of error. With a better understanding of the population and
+geospacial makeup of each individual zone, we would be able to better optimize our resources and potentially save more people.
 
 \subsection{Dynamic Approach}
-With only a total of six zones and a maximum of $n = 3$ ambulances to allocate, overall algorithm efficiency is not a pressing issue. As we have shown above, even a brute force attempt at optimizing the ambulance locations takes a negligible amount of time. However, as we look to expanding the model to fit a larger area, with more zones, and more ambulances, it becomes increasingly more important to look for ways to make our algorithm more efficient.
+With only a total of six zones and a maximum of $n = 3$ ambulances to allocate, overall algorithm efficiency is
+not a pressing issue. As we have shown above, even a brute force attempt at optimizing the ambulance locations
+takes a negligible amount of time. However, as we look to expanding the model to fit a larger area, with more
+zones, and more ambulances, it becomes increasingly more important to look for ways to make our algorithm more efficient.
 
-Even after our greedy algorithm reduces the overall solution time to an $O(n, k) = nk^2$, or polynomial time, there are still possible ways to improve it. One such method would be the use of dynamic programming methods to split the problem up into a series of smaller subproblems, and then merge the results together. As a result of such a method, we would reduce the problem to one with an $O(n, k) = nk\log(k)$, an algorithm that would easily scale to larger data sets.
+Even after our greedy algorithm reduces the overall solution time to an $O(n, k) = nk^2$, or polynomial time, there
+are still possible ways to improve it. One such method would be the use of dynamic programming methods to split the
+problem up into a series of smaller subproblems, and then merge the results together. As a result of such a method,
+we would reduce the problem to one with an $O(n, k) = nk\log(k)$, an algorithm that would easily scale to larger data sets.
 
-However, the implementation of such a method is slightly less simple. One such way to implement a solution in this manner would be in the following fashion:
+However, the implementation of such a method is slightly less simple.
+One such way to implement a solution in this manner would be in the following fashion:
 
 \begin{enumerate}
 \item Given a graph of each node (zone), and the edges between them (time it takes to travel between nodes), immediately remove all infeasible edges, with edge length (time) greater than the eight minute baseline.
@@ -212,7 +243,9 @@ However, the implementation of such a method is slightly less simple. One such w
 \item Solve each subdistrict for the optimal ambulance location, thereby finding a solution for the set as a whole.
 \end{enumerate}
 
-While we are not guaranteed to find the optimal solution to ambulance location, we will be provided with a relatively good one, in a short amount of time. There are tradeoffs to using such a model, but especially at a large scale, this methodology is realistically the one an Emergency Service Coordinator would use.
+While we are not guaranteed to find the optimal solution to ambulance location, we will be provided with a relatively
+good one, in a short amount of time. There are tradeoffs to using such a model, but especially at a large scale,
+this methodology is realistically the one an Emergency Service Coordinator would use.
 
 \section{Non-Technical Memo}
 
