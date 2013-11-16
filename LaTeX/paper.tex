@@ -35,15 +35,9 @@
 \tableofcontents
 \newpage
 \section{Problem Restatement}
-Given a county made up of six separate zones and average travel times between zones, create a model
-to optimize the placement of $n$ ambulances in order to maximize the number of civilians reached in an
-eight minute period. Consider the scenarios where $n = 3$, $n = 2$, and $n = 1$, respectively, and for
-each scenario, keep track of how many people are not being reached with each possible solution.
+Given a county made up of six separate zones and average travel times between zones, create a model to optimize the placement of $n$ ambulances in order to maximize the number of civilians reached in an eight minute period. Consider the scenarios where $n = 3$, $n = 2$, and $n = 1$, respectively, and for each scenario, keep track of how many people are not being reached with each possible solution.
 
-Then, consider a scenario in which a large scale disaster affects a single location (e.g. the September 11th attacks),
-and discuss how an Emergency Service Coordinator would cover the situation. Examine how a real-world city or
-county would prepare for such a disaster. Finally, write a two page memo detailing the model and its analysis
-for the Emergency Service Coordinator.
+Then, consider a scenario in which a large scale disaster affects a single location (e.g. the September 11th attacks), and discuss how an Emergency Service Coordinator would cover the situation. Examine how a real-world city or county would prepare for such a disaster. Finally, write a two page memo detailing the model and its analysis for the Emergency Service Coordinator.
 
 
 \section{Assumptions and Justifications}
@@ -81,10 +75,24 @@ for the Emergency Service Coordinator.
 
 \subsection{Model Approach}
 
+Given that a county has $n$ zones, $k$ ambulances need to be placed to maximize the number of people who be reached in eight minutes or fewer. This system can be represented as a graph of $n$ and $k$ vertices. By analyzing all possible configurations, we can identify the ideal nodes to place the ambulances. This algorithm can be made more efficient---albeit less optimal---by employing a greedy heuristic that only focuses on the nodes that provide the most added coverage.
+
+Each zone is a region, and therefore the population is not concentrated on one point. As a result, ambulances will often be able to cover only a fraction of a zone's total population. In order to find these fractions, we developed a model of population density for each zone by extrapolating from the provided average travel times between zones.
+
+Travel time from a zone A to another zone B is not necessarily the same as the travel time in the opposite direction. This inconsistency could be due to a variety of factors, including differences in traffic, roads, and conditions. As a result, these two cases for each pair of zones must be handled separately.
+
 \subsection{Zone-to-Zone Population Dynamics}
 An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
 that the ambulance can cover in a second zone from a first zone (not necessarily distinct),
 will be hereafter referred to as zone-to-zone coverage.
+
+A lack of spatial understanding of the county entails the use of a different type of population density. Rather than expressing population as a function of area or distance, we chose to express population density in terms of travel time from a reference point. This is analogous to plotting the number of people a vehicle is likely to meet at each time as it drives along a one-dimensional path.
+
+
+
+
+The population that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be referred to as zone-to-zone coverage.
+
 \begin{description}
     \item[$\mathbf{A(t), B(t)}$] \hfill \\
     	Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution
@@ -225,7 +233,7 @@ allows us to better predict how many people an ambulance would miss (not be able
 The number of missed people is an important statistic that an Emergency Service Coordinator needs to have in
 order to fully optimize their resources. In our system now, we predict this number with a certain level of accuracy,
 but we are still prone to a relatively large amount of error. With a better understanding of the population and
-geospacial makeup of each individual zone, we would be able to better optimize our resources and potentially save more people.
+geospatial makeup of each individual zone, we would be able to better optimize our resources and potentially save more people.
 
 \subsection{Dynamic Approach}
 With only a total of six zones and a maximum of $n = 3$ ambulances to allocate, overall algorithm efficiency is
@@ -246,12 +254,12 @@ One such way to implement a solution in this manner would be in the following fa
     immediately remove all infeasible edges, with edge length (time) greater than the eight minute baseline.
 
 \item Identify a set of nodes such that there is a large number of outgoing edges, thereby identifying potential
-    split points, to divide each county into smaller subcounties. Make sure to account for overlap.
+    split points, to divide each county into smaller sub-counties. Make sure to account for overlap.
 
-\item Allocate $n$ ambulances across the subcounties. If there are fewer ambulances than are necessary to cover
-    the entire county, weight each subcounty by population size (save more people per ambulance).
+\item Allocate $n$ ambulances across the sub-counties. If there are fewer ambulances than are necessary to cover
+    the entire county, weight each sub-county by population size (save more people per ambulance).
 
-\item Solve each subcounty for the optimal ambulance location, thereby finding a solution for the set as a whole.
+\item Solve each sub-county for the optimal ambulance location, thereby finding a solution for the set as a whole.
 \end{enumerate}
 
 While we are not guaranteed to find the optimal solution to ambulance location, we will be provided with a relatively
