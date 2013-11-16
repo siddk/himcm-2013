@@ -77,10 +77,10 @@ zone-to-zone coverage.
     \item[$T_{BA}$] travel time from B to A, given
     \item[$P_B$] total population of B
     \item[$F_B(s)$] the probability curve for differences in travel time within B
-    \item[$T_{A^+}$] travel time inside of A traveling away from B
-    \item[$T_{A^-}$] travel time inside of A traveling toward B
-    \item[$T_{B^+}$] travel time inside of B traveling away from A
-    \item[$T_{B^-}$] travel time inside of B traveling toward A
+    \item[$T_{A+}$] average travel time in the direction of B to A inside of A
+    \item[$T_{A-}$] average travel time in the direction of A to B inside of A
+    \item[$T_{B+}$] average travel time in the direction of A to B inside of B
+    \item[$T_{B-}$] average travel time in the direction of B to A inside of B
     \item[$a, b$] width of A and B respectively
     \item[$g$] width of the gap between A and B
 \end{description}
@@ -90,7 +90,12 @@ zone-to-zone coverage.
 The function for zone-to-zone coverage in respect to travel time can be written out as 
 $$Z_{AB}(t) = P_B \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
 In order to find the width of zone B, b, we can take the probability curve of differences in travel time within B, $F_B(s)$, and find the average travel time within B. This is the average difference in travel time, and is equal to $T_{B+}$. 
-$$T_{B+} = \int^{T_{AB}}_{T_{AB} - b} s F_B(s) ds$$
+$$T_{B+} = \int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} s F_B(s) ds$$
+The probability curve of differences in travel time within B, $F_B(s)$, can be found by performing a cross-correlation of $B(t)$ on itself, with $s$ being the difference in travel time plotted against frequency.
+$$P_B(s) =\int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} B(t) * B(t-s) dt$$
+The average travel time in the direction of A to B inside of A, $T_{A-}$, and the average travel time in the direction of B to A inside of A, $T_{A+}$, average out 
+
+the average travel time in the direction of A to B inside of B, $T_{B+}$, can be cal
 
 \subsection{Ambulance Distributor}
 Once the zone-to-zone coverages have been
