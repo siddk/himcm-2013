@@ -41,6 +41,24 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 
 \section{Assumptions and Justifications}
+\begin{enumerate}
+    \item The travel times given are calculated from an optimal route from the center of the first
+        zone to the center of ths econd. This excludes the possibility of reaching a zone faster
+        via an indirect route from the direct, given one.
+    \item The travel times given for travel from any zone to itself is the average
+        of all the travel times of the different routes within that zone.
+    \item The ratio between the time it takes inside a zone to travel toward a second zone,
+        to the time it takes inside a zone to return from a second, is equal to the ratio
+        between the travel time from the first zone to the second, and the travel time from the
+        second to the first.
+    \item
+        Ambulances can only be placed in the very center of a zone. Because we do not know the
+        spacial position of the zones relative to each other, we cannot consider the ambulances
+        being closer to one zone or another.
+    \item
+        Overlap of ambulance coverage in a zone will be treated as even coverage over the entire
+        zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, due to
+        ambulances  %TODO 
 
 \section{The Model}
 
