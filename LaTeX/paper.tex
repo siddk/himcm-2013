@@ -13,8 +13,8 @@
 \restylefloat{table}
 \restylefloat{figure}
 \usepackage{setspace}
-% \usepackage{minted}
-% \usemintedstyle{colorful}
+\usepackage{minted}
+\usemintedstyle{colorful}
 \graphicspath{{./Pictures/}}
 
 \pagestyle{fancy}
@@ -224,7 +224,7 @@ The number of people the ambulances are able to cover is a function of our popul
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=3in]{greedy6point.pdf}
-\caption{Graph in fig. \ref{fig:fullgraph}, with edges longer than 8 minutes removed}
+\caption{Graph in fig. 2, with edges longer than 8 minutes removed}
 \end{center}
 \end{figure}
 
@@ -357,7 +357,7 @@ After calculating the maximum number of people coverable by one ambulance, we st
 \section{Code}
 The following contains the code for both our brute force location optimizer, as well as the greedy optimizer. Both functions take a parameter $nambulances$, representing the total number of ambulances we have to allocate across the county.
 
-% \inputminted[fontsize=\footnotesize]{python}{../Code/optimizer.py}
+\inputminted[fontsize=\footnotesize]{python}{../Code/optimizer.py}
 
 \bibliographystyle{unsrt}
 \bibliography{references}
