@@ -342,7 +342,15 @@ While we are not guaranteed to find the optimal solution to ambulance location, 
 good one, in a short amount of time. There are tradeoffs to using such a model, but especially at a large scale,
 this methodology is realistically the one an Emergency Service Coordinator would use.
 
+\newpage
 \section{Non-Technical Memo}
+A county with a six zones needs to maximize the number of people that can be reached within eight minutes using its three ambulances. Given the average amount of time necessary to travel  between each of the zones, we must develop an algorithm for determining the optimal placement of the ambulances.
+	
+In order to solve this problem, we first needed to develop a firm understanding of how many people a single ambulance can reach within eight minutes. In order to get an accurate representation of how many people an ambulance can actually reach, we took into account the fact that a zone is has an area and that the population of a zone is spread out over its entire area. While we assumed that the population density is linear, we designed our solution to be flexible enough to implement  any  symmetrical population distribution.
+
+Because distance in this scenario is unknown, we are forced to use another unit to represent the population density. Given that we want to travel from zone A to zone B, we chose to model the population density of zone B as a function of travel time from zone A. Using this function, we were able to calculate the time it would take to travel through all of B (the width) and the number of people covered in B per travel time away from A. By taking the number of people covered and the given travel times between each of the zones, we were able to calculate the theoretical number of people reachable within eight minutes by an ambulance for each zone.
+
+After calculating the maximum number of people coverable by one ambulance, we still need to figure out where we should put the ambulances to cover the most people. We approach this problem in two ways: we use a brute-force method, enumerating all possible combinations of ambulance positions, and picking the one that covered the most people; we also create a greedy heuristic, which doesn’t necessarily pick the optimal solution but runs much more quickly than the brute-force algorithm, and has proven to be very robust as well.
 
 \newpage
 \appendix
@@ -350,9 +358,6 @@ this methodology is realistically the one an Emergency Service Coordinator would
 The following contains the code for both our brute force location optimizer, as well as the greedy optimizer. Both functions take a parameter $nambulances$, representing the total number of ambulances we have to allocate across the county.
 
 % \inputminted[fontsize=\footnotesize]{python}{../Code/optimizer.py}
-
-
-
 
 \bibliographystyle{unsrt}
 \bibliography{references}
