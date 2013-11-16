@@ -43,29 +43,25 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 \section{Assumptions and Justifications}
 \begin{description}
-    \item[TODO(drew): Add these assumptions] \hfill \\
-    	* Each zone is not a point, but rather a distribution. We experimented with...
-        * Route frequency is correlated with population frequency (two random variables?)
-    \item[1. Naming] \hfill \\
-    	A county is another name for a county. ... TODO(drew)
-        Travel...
-        Travel times...
-    \item[2. Zone to Zone Travel] \hfill \\
+    \item[1. Zones as Regions] \hfill \\
+    	Each zone is not a point, but rather a region with a finite area. This means that the population of each zone is not concentrated on one point, but rather is spread out across its area.
+    \item[2. Evenly Distributed Populations within Zones]\hfill \\
+    	We assume, for lack of better data, that population is evenly distributed in each zone.
+    \item[3. Zone to Zone Travel] \hfill \\
     	The travel times given are considered to be optimal routes from the center of one zone to
-        the center of the another, regardless of any other zones that may lie in between.
-    \item[3. Travel Inside Each Zone] \hfill \\
+        the center of the another, regardless of any other zones that may lie in between. The time to travel from one zone to another is not necessarily equal to the reverse.
+    \item[4. Travel Inside Each Zone] \hfill \\
     	The travel times given for travel from any zone to itself is the average
         of all the travel times of the different routes within that zone.
-    \item[4. Directional Travel Inside Each Zone] \hfill \\
-    	The ratio between the time it takes inside a zone to travel toward a second zone,
-        to the time it takes inside a zone to return from a second, is equal to the ratio
-        between the travel time from the first zone to the second, and the travel time from the
-        second to the first.
-    \item[5. Ambulance Placement] \hfill \\
+    \item[5. Directional Travel Inside Each Zone] \hfill \\
+    	The ratio of the time it takes to travel inside zone A toward a second zone B
+        to the time it takes to travel inside zone A away from zone B, is equal to the ratio
+        of travel time from A to B compared to the travel time from B to A. For example, traffic congestion from A to B  slows down all movement in that direction, even inside A.
+    \item[6. Ambulance Placement] \hfill \\
         Ambulances can only be placed in the very center of a zone. Because we do not know the
         spacial position of the zones relative to each other, we cannot consider the ambulances
         being closer to one zone or another.
-    \item[6. Partial Coverage] \hfill \\
+    \item[7. Partial Coverage] \hfill \\
         Partial ambulance coverage of a zone will be treated as incomplete even coverage over the entire
         zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
         that multiple ambulances will cover different areas of the zones, thus evening out coverage.
@@ -183,11 +179,13 @@ With $b$ solved and $B(t)$ fully defined, we can finally evaluate the original i
 
 $$Z_{AB}(t) = P_B \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
 
+Although our model is robust and supports any symmetrical function for $B(t)$, we assume for lack of better data that population is evenly distributed in each zone (i.e. $B(t)$ is a constant). This simplifies the process of finding the optimal ambulance locations. 
+
 \subsection{Ambulance Distribution Optimization}
 Once the zone-to-zone coverages have been calculated, we must still decide where to place
 the ambulances to maximize total coverage. Total coverage is defined as the sum of the coverages
-of the individual zones, i.e. the number of people that can be reached by at least one ambulance
-within eight minutes.
+of the individual zones (i.e. the number of people that can be reached by at least one ambulance
+within eight minutes).
 
 Since ambulance placements are assumed to be in the center of zones, putting two ambulances in the same
 zone does not increase coverage. Therefore, ambulances should be placed in different zones to maximize
