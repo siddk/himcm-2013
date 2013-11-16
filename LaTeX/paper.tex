@@ -24,7 +24,7 @@
 \renewcommand{\headrulewidth}{.8pt}
 %\renewcommand{\footrulewidth}{.8pt}
 
-\title{\textbf{Emergency Service Location Optimization in a Multi-Zone District based on Population Distribution}}
+\title{\textbf{Emergency Service Location Optimization in a Multi-Zone County based on Population Distribution}}
 \author{Team 4552}
 
 \date{November 15, 2013}
@@ -35,14 +35,14 @@
 \tableofcontents
 \newpage
 \section{Problem Restatement}
-Given a district made up of six separate zones and average travel times between zones, create a model
+Given a county made up of six separate zones and average travel times between zones, create a model
 to optimize the placement of $n$ ambulances in order to maximize the number of civilians reached in an
 eight minute period. Consider the scenarios where $n = 3$, $n = 2$, and $n = 1$, respectively, and for
 each scenario, keep track of how many people are not being reached with each possible solution.
 
 Then, consider a scenario in which a large scale disaster affects a single location (e.g. the September 11th attacks),
 and discuss how an Emergency Service Coordinator would cover the situation. Examine how a real-world city or
-district would prepare for such a disaster. Finally, write a two page memo detailing the model and its analysis
+county would prepare for such a disaster. Finally, write a two page memo detailing the model and its analysis
 for the Emergency Service Coordinator.
 
 
@@ -52,7 +52,7 @@ for the Emergency Service Coordinator.
     	* Each zone is not a point, but rather a distribution. We experimented with...
         * Route frequency is correlated with population frequency (two random variables?)
     \item[1. Naming] \hfill \\
-    	A district is another name for a county. ... TODO(drew)
+    	A county is another name for a county. ... TODO(drew)
         Travel...
     \item[2. Zone to Zone Travel] \hfill \\
     	The travel times given are considered to be optimal routes from the center of one zone to
@@ -164,7 +164,10 @@ increases the computations required by a factor of 2 million (assuming the avera
 and the number of ambulances increases proportionally).
 
 Therefore, a more scalable solution is needed. We discovered that a greedy heuristic also gives a good solution,
-except with a much lower time complexity of $O(n, k) = n k^2$.
+except with a much lower time complexity of $O(n, k) = n k^2$. The greedy heuristic works by assigning ambulances to zones
+one at a time. For each assignment, we iterate through each zone without an ambulance already assigned, and see how many
+additional people it would cover; then we assign an ambulance to the zone which would most increase the number of
+covered people.
 
 \section{Model Analysis}
 
@@ -209,7 +212,7 @@ we scale this problem up to a large city, or across multiple counties, algorithm
 
 \subsection{Population Distribution}
 As it currently stands, we have very little information regarding the actual population distribution of each
-zone in the scope of the district, which provides us with a slightly skewed perception. While we justified the
+zone in the scope of the county, which provides us with a slightly skewed perception. While we justified the
 use of a standard distribution for population above, we have the ability to greatly improve our model with a
 better idea of how spread out a population of a zone actually is, in relation to its epicenter. This information
 allows us to better predict how many people an ambulance would miss (not be able to cover) in a certain zone.
@@ -234,13 +237,16 @@ However, the implementation of such a method is slightly less simple.
 One such way to implement a solution in this manner would be in the following fashion:
 
 \begin{enumerate}
-\item Given a graph of each node (zone), and the edges between them (time it takes to travel between nodes), immediately remove all infeasible edges, with edge length (time) greater than the eight minute baseline.
+\item Given a graph of each node (zone), and the edges between them (time it takes to travel between nodes),
+    immediately remove all infeasible edges, with edge length (time) greater than the eight minute baseline.
 
-\item Identify a set of nodes such that there is a large number of outgoing edges, thereby identifying potential split points, to divide each district into smaller subdistricts. Make sure to account for overlap.
+\item Identify a set of nodes such that there is a large number of outgoing edges, thereby identifying potential
+    split points, to divide each county into smaller subcounties. Make sure to account for overlap.
 
-\item Allocate $n$ ambulances across the subdistricts. If there are fewer ambulances than are necessary to cover the entire district, weight each subdistrict by population size (save more people per ambulance).
+\item Allocate $n$ ambulances across the subcounties. If there are fewer ambulances than are necessary to cover
+    the entire county, weight each subcounty by population size (save more people per ambulance).
 
-\item Solve each subdistrict for the optimal ambulance location, thereby finding a solution for the set as a whole.
+\item Solve each subcounty for the optimal ambulance location, thereby finding a solution for the set as a whole.
 \end{enumerate}
 
 While we are not guaranteed to find the optimal solution to ambulance location, we will be provided with a relatively
