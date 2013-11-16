@@ -77,7 +77,7 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 \subsection{Model Approach}
 
-Given that a county has $n$ zones, $k$ ambulances need to be placed to maximize the number of people who be reached in eight minutes or fewer. This system can be represented as a graph of $n$ and $k$ vertices. By analyzing all possible configurations, we can identify the ideal nodes to place the ambulances. This algorithm can be made more efficient---albeit less optimal---by employing a greedy heuristic that only focuses on the nodes that provide the most added coverage.
+Given that a county has $n$ zones, $k$ ambulances need to be placed to maximize the number of people who can be reached in eight minutes or fewer. This system can be represented as a graph of $n$ nodes and $n^2$ vertices. By analyzing all possible configurations, we can identify the ideal nodes to place the ambulances. This algorithm can be made more efficient---albeit less optimal---by employing a greedy heuristic that only focuses on the nodes that provide the most added coverage.
 
 Each zone is a region, and therefore the population is not concentrated on one point. As a result, ambulances will often be able to cover only a fraction of a zone's total population. In order to find these fractions, we developed a model of population density for each zone by extrapolating from the provided average travel times between zones.
 
@@ -102,7 +102,7 @@ A lack of spatial understanding of the county entails the use of a different typ
 \begin{subfigure}{.45\textwidth}
   \centering
   \includegraphics[width=0.9\linewidth]{A(t)B(t).png}
-  \caption{An2 example of a zone's population density as a function of travel time from another zone.}
+  \caption{TODO(drew)}
   \label{fig:sub2}
 \end{subfigure}
 \caption{Overarching caption whatever}
@@ -114,16 +114,24 @@ The population that the ambulance can cover in a second zone from a first zone (
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=4in]{A(t)B(t).png}
-\caption{An2 example of a zone's population density as a function of travel time from another zone.}
+\includegraphics[width=3.5in]{A(t)B(t).png}
+\caption{TODO(drew)}
 \label{A(t)B(t)}
 \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=4in]{6point.pdf}
-\caption{An2 example of a zone's population density as a function of travel time from another zone.}
+\includegraphics[width=3.5in]{6point.pdf}
+\caption{TODO(drew)}
+\label{A(t)B(t)}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=3.5in]{greedy6point.pdf}
+\caption{TODO(drew)}
 \label{A(t)B(t)}
 \end{center}
 \end{figure}
