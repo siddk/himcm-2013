@@ -109,22 +109,6 @@ A lack of spatial understanding of the county entails the use of a different typ
 
 \newpage
 
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=3.5in]{6point.pdf}
-\caption{A graph of the nodes (zones) and edges (travel times).}
-\label{satan1}
-\end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=3.5in]{greedy6point.pdf}
-\caption{A graph of the nodes (zones) with all edges (travel times) greater than 8 removed.}
-\label{satan2}
-\end{center}
-\end{figure}
-
 %TODO: We are trying to find zone-to-zone coverage...
 
 \begin{description}
@@ -167,9 +151,9 @@ The function for zone-to-zone coverage in respect to travel time can be written 
 
 $$Z_{AB}(t) = P_B \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
 
-$B(t)$ is a population density function with a zone-specific constant $b$, which is the width of zone B. Every zone has a different $b$ and, as a result, a different $B(t)$. In order to find this specific $B(t)$, we must obtain $b$. Until then, we cannot directly evaluate $B(t)$. 
+$B(t)$ is a population density function with a zone-specific constant $b$, which is the width of zone B. Every zone has a different $b$ and, as a result, a different $B(t)$. In order to find this specific $B(t)$, we must obtain $b$. Until then, we cannot directly evaluate $B(t)$.
 
-Using the average travel time within B that is provided to us, we can calculate the value for $b$. However, since we are provided with a general average travel time within each zone---which does not account for the direction of travel---we must extrapolate both the average travel time within B towards A and within B away from A. 
+Using the average travel time within B that is provided to us, we can calculate the value for $b$. However, since we are provided with a general average travel time within each zone---which does not account for the direction of travel---we must extrapolate both the average travel time within B towards A and within B away from A.
 
 The average travel time in the direction of A to B inside of B, $T_{B+}$, and the average travel time in the direction of B to A
 inside of B, $T_{B-}$, have a total average travel time of $T_B$. We can also write the ratio of $T_{B+}$ and $T_{B-}$,
@@ -187,7 +171,7 @@ $$T_{B+} = \frac {2T_B}{1+ \frac{T_{AB}}{T_{BA}}} = \int^b_0 s F_B(s) ds$$
 To find this distribution of travel times, we take the cross correlation of $B(t)$ on itself, with $s$ being  travel time plotted against frequency.
 $$F_B(s) =\int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} B(t) B(t-s) dt$$
 
-Combining the previous two equations, we can finally solve for $b$ in terms of known values. $b$ is a zone-specific constant embedded within the general equation $B(t)$. Depending on the type of equation that $B(t)$ is, $b$ can be solved for in different ways. 
+Combining the previous two equations, we can finally solve for $b$ in terms of known values. $b$ is a zone-specific constant embedded within the general equation $B(t)$. Depending on the type of equation that $B(t)$ is, $b$ can be solved for in different ways.
 
 $$\frac {2T_B}{1+ \frac{T_{AB}}{T_{BA}}} = \int^b_0 \int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} s B(t) B(t-s) dt ds$$
 
@@ -233,10 +217,10 @@ The number of people the ambulances are able to cover is a function of our popul
 \subsubsection{$n=3$}
 
 \begin{figure}[htbp]
-\label{fig:fullgraph}
-\caption{Graph of zones, populations, and travel times}
 \begin{center}
 \includegraphics[width=3in]{6point.pdf}
+\caption{Graph of zones, populations, and travel times}
+\label{fig:fullgraph}
 \end{center}
 \end{figure}
 
