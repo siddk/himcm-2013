@@ -41,14 +41,56 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 
 \section{Assumptions and Justifications}
+\begin{enumerate}
+    \item The travel times given are calculated from an optimal route from the center of the first
+        zone to the center of ths econd. This excludes the possibility of reaching a zone faster
+        via an indirect route from the direct, given one.
+    \item The travel times given for travel from any zone to itself is the average
+        of all the travel times of the different routes within that zone.
+    \item The ratio between the time it takes inside a zone to travel toward a second zone,
+        to the time it takes inside a zone to return from a second, is equal to the ratio
+        between the travel time from the first zone to the second, and the travel time from the
+        second to the first.
+    \item
+        Ambulances can only be placed in the very center of a zone. Because we do not know the
+        spacial position of the zones relative to each other, we cannot consider the ambulances
+        being closer to one zone or another.
+    \item
+        Partial ambulance coverage of a zone will be treated as imcomplete even coverage ove the entire
+        zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
+        that multiple ambulances will cover different areas of the zones, thus evening out coverage.
+\end{enumerate}
 
 \section{The Model}
 
 \subsection{Model Approach}
 
 \subsection{Part 1?}
+An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
+that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be hereafter referred to as
+zone-to-zone coverage.
+\begin{description}
+    \item[$A(t), B(t)$] Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution
+    \item[$Z_{AB}(t)$] Zone-to-zone coverage of  B from  A
+    \item[$v$] required ambulance response time
+    \item[$T_{AB}$] travel time from A to B, given
+    \item[$T_{BA}$] travel time from B to A, given
+    \item[$P_B$] total population of B
+    \item[$T_{A^+}$] travel time inside of A traveling away from B
+    \item[$T_{A^-}$] travel time inside of A traveling toward B
+    \item[$T_{B^+}$] travel time inside of B traveling away from A
+    \item[$T_{B^-}$] travel time inside of B traveling toward A
+    \item[$a, b$] width of A and B respectively
+    \item[$g$] width of the gap between A and B
+\end{description}
 
-\subsection{Part 2?}
+%TODO: Graphical representation of origin and setup
+The function for zone-to-zone coverage in respect to travel time can be written out as 
+$$Z_{AB}(t) = P_B * \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
+
+
+\subsection{Ambulance Distributor}
+Once the zone-to-zone coverages have been
 
 \section{Model Analysis}
 
@@ -59,6 +101,24 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 \subsection{1 Ambulance Cover}
 
 \subsection{Catastrophic Cover}
+In a localized catastrophic event such as those that happened on September 11, 2001, there will be
+many casualties in a single location that require aid. Ambulances, and other emergency vehicles,
+such as police cars and fire trucks, will need to respond quickly in order to aid the most critically
+injured first, who will be sorted by triage. Therefore, it is very important for ambulances to be able to
+reach the emergency as quickly as possible, regardless of the initial location of the ambulances and the
+location of the emergency.
+
+Catastrophic events will cause more casualties than emergency personnel will be able to service, so as a result,
+ambulances will have to act as shuttles to hospitals for the injured. Therefore, to maximize throughput
+cities should arrange hospitals to minimize the average time between all areas and the nearest
+hospital.
+
+Since metropolitan areas are most likely to be affected by catastrophic events, and catastrophic events there
+will affect significantly more people, to maximize patient throughput cities should arrange hospitals to minimize
+the average time between all areas and the nearest hospital. Futhermore, due to differences in population density,
+statistically, an accident in a metropolitan area will demand more urgent care than a similar accident
+in a rural or suburban area. Therefore, when the city lays out its stations for ambulances, attempting to minimize
+travel times to any area, it should put significantly more weight on minimizing travel time to metropolitan areas.
 
 \section{Strengths and Weaknesses}
 
