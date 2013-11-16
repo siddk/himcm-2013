@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1384631527 "paper.tex" "paper.pdf" "paper" 1384631528
+["pdflatex"] 1384633667 "paper.tex" "paper.pdf" "paper" 1384633668
   "/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/catchfile.sty" 1335995445 8493 4e5537dfd443b37833e5bc8675bbe606 ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -41,13 +41,13 @@
   "/usr/local/texlive/2012/texmf-dist/tex/latex/tools/calc.sty" 1254151720 10075 18f0ccff816231e9905cd2b3a482a622 ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
-  "A(t)B(t).png" 1384631295 30607 6f02e0128680fa31e44ad25cccd3e4ec ""
-  "B(t).png" 1384631295 5334 45aacd9ea6267d374f61dcdd32da19f3 ""
-  "paper.aux" 1384631528 2076 017d9450e9035cdf7cd4b38849c4d7e4 ""
+  "A(t)B(t).png" 1384633366 34152 6ba212e838a8e2a7d631fd4b91dcf58f ""
+  "B(t).png" 1384633366 5241 70b282a4a5130c9ffa94eaee45366e92 ""
+  "paper.aux" 1384633668 1936 523cc9322496a0d358cb13aa407e671c ""
   "paper.out.pyg" 0 -1 0 ""
-  "paper.pyg" 1384631429 7576 c442aeaedfbd2a727be9cadb20151646 ""
-  "paper.tex" 1384631525 19689 81d24c3eb8094c0edcaf02d21100f7d5 ""
-  "paper.toc" 1384631528 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "paper.pyg" 1384633473 7576 c442aeaedfbd2a727be9cadb20151646 ""
+  "paper.tex" 1384633665 19824 9b6b4598e0c01a9cf06fceea957acf9e ""
+  "paper.toc" 1384633668 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "paper.toc"
   "paper.pdf"
