@@ -24,7 +24,7 @@
 % \renewcommand{\headrulewidth}{0.8pt}
 % \renewcommand{\footrulewidth}{0.8pt}
 
-\title{\textbf{INSERT TITLE HERE}}
+\title{\textbf{Emergency Service Location Optimization in a Multi-Zone District based on Population Distribution}}
 \author{Team 4552}
 
 \date{November 15, 2013}
@@ -74,6 +74,25 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
 that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be hereafter referred to as
 zone-to-zone coverage.
+\begin{description}
+    \item[$A(t), B(t)$] Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution
+    \item[$Z_{AB}(t)$] Zone-to-zone coverage of  B from  A
+    \item[$v$] required ambulance response time
+    \item[$T_{AB}$] travel time from A to B, given
+    \item[$T_{BA}$] travel time from B to A, given
+    \item[$P_B$] total population of B
+    \item[$T_{A^+}$] travel time inside of A traveling away from B
+    \item[$T_{A^-}$] travel time inside of A traveling toward B
+    \item[$T_{B^+}$] travel time inside of B traveling away from A
+    \item[$T_{B^-}$] travel time inside of B traveling toward A
+    \item[$a, b$] width of A and B respectively
+    \item[$g$] width of the gap between A and B
+\end{description}
+
+%TODO: Graphical representation of origin and setup
+The function for zone-to-zone coverage in respect to travel time can be written out as 
+$$Z_{AB}(t) = P_B * \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
+
 
 \subsection{Ambulance Distributon Optimization}
 Once the zone-to-zone coverages have been calculated, we must still decide where to place
@@ -129,6 +148,33 @@ travel times to any area, it should put significantly more weight on minimizing 
 \section{Strengths and Weaknesses}
 
 \section{Extensions}
+Though our model performs fairly well already, providing us with the optimal locations of our $n$ ambulances to maximize the number of people saved, there are a number of ways we can improve the model so that we can make more accurate predictions as to the number of people we can reach in an eight minute period. Furthermore, we can also improve the overall efficiency of the solution algorithm itself, by looking at potential dynamic programming approaches to the problem. 
+
+While any algorithmic changes may not be necessary with only six zones, and a maximum of $n = 3$ ambulances, if we scale this problem up to a large city, or across multiple counties, algorithm efficiency becomes an important problem that requires attention.
+
+\subsection{Population Distribution}
+As it currently stands, we have very little information regarding the actual population distribution of each zone in the scope of the district, which provides us with a slightly skewed perception. While we justified the use of a standard distribution for population above, we have the ability to greatly improve our model with a better idea of how spread out a population of a zone actually is, in relation to its epicenter. This information allows us to better predict how many people an ambulance would miss (not be able to cover) in a certain zone.
+
+The number of missed people is an important statistic that an Emergency Service Coordinator needs to have in order to fully optimize their resources. In our system now, we predict this number with a certain level of accuracy, but we are still prone to a relatively large amount of error. With a better understanding of the population and geospacial makeup of each individual zone, we would be able to better optimize our resources and potentially save more people.
+
+\subsection{Dynamic Approach}
+With only a total of six zones and a maximum of $n = 3$ ambulances to allocate, overall algorithm efficiency is not a pressing issue. As we have shown above, even a brute force attempt at optimizing the ambulance locations takes a negligent amount of time. However, as we look to expanding the model to fit a larger area, with more zones, and more ambulances, it becomes increasingly more important to look for ways to make our algorithm more efficient.
+
+Even after our greedy algorithm reduces the overall solution time to an $O(n^2)$, or polynomial time, there are still possible ways to improve it. One such method would be the use of dynamic programming methods to split the problem up into a series of smaller subproblems, and then merge the results together. As a result of such a method, we would reduce the problem to one with an $O(nlog(n))$, an algorithm that would easily scale to larger data sets.
+
+However, the implementation of such a method is slightly less simple. One such way to implement a solution in this manner would be in the following fashion:
+
+\begin{enumerate}
+\item Given a graph of each node (zone), and the edges between them (time it takes to travel between nodes), immediately remove all infeasible edges, with edge length (time) greater than the eight minute baseline.
+
+\item Identify a set of nodes such that there is a large number of outgoing edges, thereby identifying potential split points, to divide each district into smaller subdistricts. Make sure to account for overlap.
+
+\item Allocate $n$ ambulances across each subdistrict. If there are fewer ambulances than are necessary to cover the entire district, weight each subdistrict by population size (save more people per ambulance)
+
+\item Solve each subdistrict for the optimal ambulance location, thereby finding a solution for the set as a whole
+\end{enumerate}
+
+While we are not guaranteed to find the optimal solution to ambulance location, we will be provided with a relatively good one, in a short amount of time. There are tradeoffs to using such a model, but especially at a large scale, this methodology is realistically the one an Emergency Service Coordinator would use.
 
 \section{Non-Technical Memo}
 
