@@ -65,7 +65,7 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 \subsection{Model Approach}
 
-\subsection{Part 1?}
+\subsection{Zone-to-Zone Population Dynamics}
 An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
 that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be hereafter referred to as
 zone-to-zone coverage.
@@ -76,6 +76,7 @@ zone-to-zone coverage.
     \item[$T_{AB}$] travel time from A to B, given
     \item[$T_{BA}$] travel time from B to A, given
     \item[$P_B$] total population of B
+    \item[$F_B(s)$] the probability curve for differences in travel time within B
     \item[$T_{A^+}$] travel time inside of A traveling away from B
     \item[$T_{A^-}$] travel time inside of A traveling toward B
     \item[$T_{B^+}$] travel time inside of B traveling away from A
@@ -85,9 +86,11 @@ zone-to-zone coverage.
 \end{description}
 
 %TODO: Graphical representation of origin and setup
-The function for zone-to-zone coverage in respect to travel time can be written out as 
-$$Z_{AB}(t) = P_B * \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
 
+The function for zone-to-zone coverage in respect to travel time can be written out as 
+$$Z_{AB}(t) = P_B \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
+In order to find the width of zone B, b, we can take the probability curve of differences in travel time within B, $F_B(s)$, and find the average travel time within B. This is the average difference in travel time, and is equal to $T_{B+}$. 
+$$T_{B+} = \int^{T_{AB}}_{T_{AB} - b} s F_B(s) ds$$
 
 \subsection{Ambulance Distributor}
 Once the zone-to-zone coverages have been
