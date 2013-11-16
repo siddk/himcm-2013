@@ -84,9 +84,6 @@ Each zone is a region, and therefore the population is not concentrated on one p
 Travel time from a zone A to another zone B is not necessarily the same as the travel time in the opposite direction. This inconsistency could be due to a variety of factors, including differences in traffic, roads, and conditions. As a result, these two cases for each pair of zones must be handled separately.
 
 \subsection{Zone-to-Zone Population Dynamics}
-The population that an ambulance can cover in a second zone, B, from a first zone, A, will be referred to as zone-to-zone coverage. Zone-to-zone coverage also applies if A and B are the same zone, and represents the coverage of an ambulance in the zone it is stationed in.
-
-A lack of spatial understanding of the county entails the use of a different type of population density. Rather than expressing population as a function of area or distance, we chose to express population density in terms of travel time from a reference point. This is analogous to plotting the number of people a vehicle is likely to meet at each time as it drives along a one-dimensional path. See Figure \ref{B(t)}.
 
 \begin{figure}
 \centering
@@ -109,43 +106,50 @@ A lack of spatial understanding of the county entails the use of a different typ
 
 \newpage
 
-%TODO: We are trying to find zone-to-zone coverage...
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=3.5in]{6point.pdf}
+\caption{A graph of the nodes (zones) and edges (travel times).}
+\label{satan1}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=3.5in]{greedy6point.pdf}
+\caption{A graph of the nodes (zones) with all edges (travel times) greater than 8 removed.}
+\label{satan2}
+\end{center}
+\end{figure}
+
+The population that an ambulance can cover in a second zone, B, from a first zone, A, will be referred to as zone-to-zone coverage. Zone-to-zone coverage also applies if A and B are the same zone, and represents the coverage of an ambulance in the zone it is stationed in.
+
+A lack of spatial understanding of the county entails the use of a different type of population density. Rather than expressing population as a function of area or distance, we chose to express population density in terms of travel time from a reference point. This is analogous to plotting the number of people a vehicle is likely to meet at each time as it drives along a one-dimensional path. See Figure \ref{B(t)}.
+
+Because we have more than four different zones, it is not possible for every zone to be adjacent with all the other zones. Therefore, the ambulance may travel through another zone C in an optimal route between zones A and B. However, we are only calculating the zone-to-zone population coverage of B from A, we can consider any time spent in zone C as a gap (i.e. containing a population density of 0). The zone-to-zone coverage of C from A is already accounted for in a separate calculation of A to C. 
+
+The following calculations are used to find the coverage function for any pair of zones. Separate calculations must be done for every pair, as we as for both directions for each pair. We will be using the following variables, equations, and constants:
 
 \begin{description}
     \item[$\mathbf{Z_{AB}(t)}$] \hfill \\
-    	The zone-to-zone coverage function of B from A
-    \item[$\mathbf{A(t), B(t)}$] \hfill \\
-    	Probability density functions with respect to travel time from the center of A
-    \item[$\mathbf{v}$] \hfill \\
-    	Required ambulance response time
-    \item[$\mathbf{T_{AB}}$] \hfill \\
-    	Travel time from A to B, given
-    \item[$\mathbf{T_{BA}}$] \hfill \\
-    	Travel time from B to A, given
-    \item[$\mathbf{P_B}$] \hfill \\
-    	Total population of B
-    \item[$\mathbf{F_B(s)}$] \hfill \\
-    	The probability curve for differences in travel time within B
-   \item[$\mathbf{T_A}$] \hfill \\
-    	Average travel time inside of A
-    \item[$\mathbf{T_{A+}}$] \hfill \\
-    	Average travel time in the direction of B to A inside of A
-    \item[$\mathbf{T_{A-}}$] \hfill \\
-    	Average travel time in the direction of A to B inside of A
-   \item[$\mathbf{T_B}$] \hfill \\
-    	Average travel time inside of B
-    \item[$\mathbf{T_{B+}}$] \hfill \\
-    	Average travel time in the direction of A to B inside of B
-    \item[$\mathbf{T_{B-}}$] \hfill \\
-    	Average travel time in the direction of B to A inside of B
-    \item[$\mathbf{a, b}$] \hfill \\
+    	The zone-to-zone coverage function of B from A; to be solved
+    \item[$\mathbf{B(t)}$] \hfill \\
+    	Probability density function of zone B with respect to travel time (from the center of A)
+   \item[$\mathbf{a, b}$] \hfill \\
     	Width of A and B respectively
-    \item[$\mathbf{g}$] \hfill \\
-    	Width of the gap between A and B
+    \item[$\mathbf{v}$] \hfill \\
+    	Required ambulance response time; given (8 minutes)
+    \item[$\mathbf{T_{AB}, T_{BA}}$] \hfill \\
+    	Travel time from A to B and travel time from B to A; given
+    \item[$\mathbf{P_B}$] \hfill \\
+    	Total population of B; given
+   \item[$\mathbf{T_B}$] \hfill \\
+    	Average travel time inside of B; given
+    \item[$\mathbf{T_{B+}, T_{B-}}$] \hfill \\
+    	Average travel time inside of B in the direction of A to B\\Average travel time inside of B in the direction of B to A
+    \item[$\mathbf{F_B(s)}$] \hfill \\
+	  Frequency distribution of travel times from one random point in zone B to another point in B
 \end{description}
-
-%TODO: Graphical representation of origin and setup
-% Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution
 
 The function for zone-to-zone coverage in respect to travel time can be written as the product of the population of B with the percent of the population that is covered from A in less than $v$ minutes. The percent is the area under the probability curve, $B(t)$. As shown in Figure \ref{A(t)B(t)}, the bounds begin at $T_{AB} - \frac{b}{2}$ and end at $v$. If $v$ is less than $T_{AB} - \frac{b}{2}$, the coverage of B is 0.
 
