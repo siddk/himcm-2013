@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex paper"] 1384624080 "paper.aux" "paper.bbl" "paper" 1384624081
+["bibtex paper"] 1384626374 "paper.aux" "paper.bbl" "paper" 1384626375
   "/usr/local/texlive/2012/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "paper.aux" 1384624080 1585 0e587c84eef91047c1d1938a08e393bf ""
+  "paper.aux" 1384626375 1586 720f5e102660d9f3b0b153c36f1d3a6c ""
   "paper.bcf" 0 -1 0 ""
   "references.bib" 1384620136 217 fdcbcbfb13b6501da2fbc8c76b98b6af ""
   (generated)
   "paper.blg"
   "paper.bbl"
-["pdflatex"] 1384624080 "paper.tex" "paper.pdf" "paper" 1384624081
+["pdflatex"] 1384626374 "paper.tex" "paper.pdf" "paper" 1384626375
   "/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -41,10 +41,10 @@
   "/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def" 1306616590 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/setspace/setspace.sty" 1324344192 22913 a27d7908fc6f0385466454a966a316eb ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "paper.aux" 1384624080 1585 0e587c84eef91047c1d1938a08e393bf ""
-  "paper.bbl" 1384624080 235 63b7df41768504ebcb072444e80b32a5 "bibtex paper"
-  "paper.tex" 1384623931 15383 3ee09e3745d04d9a5e2fec1dcedf8565 ""
-  "paper.toc" 1384624080 1177 677932f5087e3cf083170c732b19bf4e ""
+  "paper.aux" 1384626375 1586 720f5e102660d9f3b0b153c36f1d3a6c ""
+  "paper.bbl" 1384626374 235 63b7df41768504ebcb072444e80b32a5 "bibtex paper"
+  "paper.tex" 1384626371 17079 7badc5772d6c16414ad4423a11485251 ""
+  "paper.toc" 1384626375 1178 a81335e16f98ed66267ef30b62735950 ""
   (generated)
   "paper.toc"
   "paper.pdf"
