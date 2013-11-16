@@ -162,7 +162,7 @@ The number of missed people is an important statistic that an Emergency Service 
 \subsection{Dynamic Approach}
 With only a total of six zones and a maximum of $n = 3$ ambulances to allocate, overall algorithm efficiency is not a pressing issue. As we have shown above, even a brute force attempt at optimizing the ambulance locations takes a negligent amount of time. However, as we look to expanding the model to fit a larger area, with more zones, and more ambulances, it becomes increasingly more important to look for ways to make our algorithm more efficient.
 
-Even after our greedy algorithm reduces the overall solution time to an $O(n) = O(n^2k)$, or polynomial time, there are still possible ways to improve it. One such method would be the use of dynamic programming methods to split the problem up into a series of smaller subproblems, and then merge the results together. As a result of such a method, we would reduce the problem to one with an $O(n) = O(nlog(n))$, an algorithm that would easily scale to larger data sets.
+Even after our greedy algorithm reduces the overall solution time to an $O(n) = n^2k$, or polynomial time, there are still possible ways to improve it. One such method would be the use of dynamic programming methods to split the problem up into a series of smaller subproblems, and then merge the results together. As a result of such a method, we would reduce the problem to one with an $O(n) = nlog(n)$, an algorithm that would easily scale to larger data sets.
 
 However, the implementation of such a method is slightly less simple. One such way to implement a solution in this manner would be in the following fashion:
 
