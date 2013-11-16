@@ -5,14 +5,13 @@ import itertools
 from data import traveltimes, populations
 
 NODES = 6  # number of nodes to care about
-MAX_TIME = 8  # maximum allotted time to reach a destination
-reaches = np.zeros((NODES, NODES))
+MAX_TIME = 8  # maximum allotted time to cover a destination
+zz_coverage = np.zeros((NODES, NODES))
 
 a, x, s, t = sp.symbols('a, x, s, t')
 
 
-# Probability/population distribution curves. Who knows what these do.
-
+# Probability/population distribution curves.
 class quad_curve(Function):
     nargs = 2
 
@@ -39,56 +38,56 @@ class gauss_curve(Function):
 PROB_CURVE = quad_curve  # selected model for population distribution
 
 expected_value = integrate(integrate(PROB_CURVE(a, t) * PROB_CURVE(a, t - s), (t, -a / 2, a / 2)) * s, (s, 0, a))
+# integral that should equal t_bbp
 
 
-def reach(start, target):
+def calc_cover(start, target):
     '''
-    Calculates reach of a single ambulance for a district.
+    Calculates coverage of a single ambulance for a zone.
     '''
-    #taa = traveltimes[start, start]
-    tbb = traveltimes[target, target]
-    tab = traveltimes[start, target]
-    tba = traveltimes[target, start]
-    #taam = 2 * taa / (1 + tba / tab)
-    tbbp = 2 * tbb / (1 + tab / tba)
-    #wa = sp.solve(expected_value - taam)[0]
-    wb = sp.solve(expected_value - tbbp)[0]
-    bstart = -wb / 2
-    bend = min(wb / 2, MAX_TIME - tab)
-    if bstart > bend:
+    t_bb = traveltimes[target, target]
+    t_ab = traveltimes[start, target]
+    t_ba = traveltimes[target, start]
+    t_bbp = 2 * t_bb / (1 + t_ab / t_ba)
+    b = sp.solve(expected_value - t_bbp)[0]
+    b_start = -b / 2
+    b_end = min(b / 2, MAX_TIME - t_ab)
+    if b_start > b_end:
         return 0
-    return round(integrate(PROB_CURVE(wb, t), (t, bstart, bend)) * populations[target])
+    return round(integrate(PROB_CURVE(b, t), (t, b_start, b_end)) * populations[target])
 
 
 for i in xrange(NODES):
     for j in xrange(NODES):
-        reaches[i, j] = reach(i, j)
+        zz_coverage[i, j] = calc_cover(i, j)
 
 
 def greedyoptimize(nambulances):
     '''
     Optimize ambulance placement using a greedy algorithm.
-    Selects additional ambulances based on how
+    Selects additional ambulances locations based on how
     many additional people it would cover.
     '''
-    reached = np.zeros(NODES)
-    startnodes = np.empty(nambulances)
+    covered = np.zeros(NODES)
+    startnodes = []
     for i in xrange(nambulances):
-        maxreach = 0
+        maxcoverage = 0
         bestnode = 0
         for start in xrange(NODES):
             if start in startnodes:
                 continue  # don't duplicate zones
-            reach = 0
+            coverage = 0
             for target in xrange(NODES):
-                reach += min(reaches[start, target], populations[target] - reached[target])
-            if reach > maxreach:
-                maxreach = reach
+                # additional coverage will increase the coverage to, at most
+                # the population of the zone
+                coverage += min(zz_coverage[start, target], populations[target] - covered[target])
+            if coverage > maxcoverage:
+                maxcoverage = coverage
                 bestnode = start
-        startnodes[i] = bestnode
+        startnodes.append(bestnode)
         for target in xrange(NODES):
-            reached[target] += min(reaches[bestnode, target], populations[target] - reached[target])
-    return (startnodes, reached)
+            covered[target] += min(zz_coverage[bestnode, target], populations[target] - covered[target])
+    return (startnodes, covered)
 
 
 def bruteforce(nambulances):
@@ -96,13 +95,13 @@ def bruteforce(nambulances):
     Takes all possible combinations of nambulances from NODES,
     and arranges them so that there is maximum coverage among zones.
     '''
-    maxreach = np.zeros(NODES)
+    maxcoverage = np.zeros(NODES)
     for startingnodes in itertools.combinations(xrange(NODES), nambulances):
-        reached = np.zeros(NODES)
+        covered = np.zeros(NODES)
         for target in xrange(NODES):
             for start in startingnodes:
-                reached[target] += min(reaches[start, target], populations[target] - reached[target])
-        if np.sum(reached) > np.sum(maxreach):
+                covered[target] += min(zz_coverage[start, target], populations[target] - covered[target])
+        if np.sum(covered) > np.sum(maxcoverage):
             optimal = startingnodes
-            maxreach = reached
-    return (optimal, maxreach)
+            maxcoverage = covered
+    return (optimal, maxcoverage)
