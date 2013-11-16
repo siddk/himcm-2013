@@ -42,12 +42,14 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 
 \section{Assumptions and Justifications}
 \begin{description}
+    \item[TODO(drew): Add these assumptions] \hfill \\
+    	* Each zone is not a point, but rather a distribution. We experimented with...
+	* Route frequency is correlated with population frequency (two random variables?)
     \item[1. Naming] \hfill \\
-    	A district is another name for a county. ...
+    	A district is another name for a county. ... TODO(drew)
+	Travel...
     \item[2. Zone to Zone Travel] \hfill \\
-    	The travel times given are calculated from an optimal route from the center of the first
-        zone to the center of the second. This excludes the possibility of reaching a zone faster
-        via an indirect route from the direct, given one.
+    	The travel times given are considered to be optimal routes from the center of one zone to the center of the another, regardless of any other zones that may lie in between.
     \item[3. Travel Inside Each Zone] \hfill \\
     	The travel times given for travel from any zone to itself is the average
         of all the travel times of the different routes within that zone.
