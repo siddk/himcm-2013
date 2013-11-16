@@ -27,17 +27,10 @@ class const_curve(Function):
     def eval(cls, a, x):
         return 1 / a
 
+PROB_CURVE = const_curve  # selected model for population distribution
 
-class gauss_curve(Function):
-    nargs = 2
-
-    @classmethod
-    def eval(cls, a, x):
-        return 0  # TODO
-
-PROB_CURVE = quad_curve  # selected model for population distribution
-
-expected_value = integrate(integrate(PROB_CURVE(a, t) * PROB_CURVE(a, t - s), (t, -a / 2, a / 2)) * s, (s, 0, a))
+expected_value = integrate(integrate(PROB_CURVE(a, t) * PROB_CURVE(a, t - s),
+                                     (t, -a / 2, a / 2)) * s, (s, 0, a))
 # integral that should equal t_bbp
 
 
@@ -54,7 +47,8 @@ def calc_cover(start, target):
     b_end = min(b / 2, MAX_TIME - t_ab)
     if b_start > b_end:
         return 0
-    return round(integrate(PROB_CURVE(b, t), (t, b_start, b_end)) * populations[target])
+    return int(integrate(PROB_CURVE(b, t), (t, b_start, b_end)) *
+               populations[target], round='standard')
 
 
 for i in xrange(NODES):
@@ -78,16 +72,18 @@ def greedyoptimize(nambulances):
                 continue  # don't duplicate zones
             coverage = 0
             for target in xrange(NODES):
-                # additional coverage will increase the coverage to, at most
-                # the population of the zone
-                coverage += min(zz_coverage[start, target], populations[target] - covered[target])
+                # additional coverage will increase the coverage to,
+                # at most the population of the zone
+                coverage += min(zz_coverage[start, target],
+                                populations[target] - covered[target])
             if coverage > maxcoverage:
                 maxcoverage = coverage
                 bestnode = start
         startnodes.append(bestnode)
         for target in xrange(NODES):
-            covered[target] += min(zz_coverage[bestnode, target], populations[target] - covered[target])
-    return (startnodes, covered)
+            covered[target] += min(zz_coverage[bestnode, target],
+                                   populations[target] - covered[target])
+    return ([i + 1 for i in startnodes], covered)  # change 0 to 1-indexing
 
 
 def bruteforce(nambulances):
@@ -96,12 +92,14 @@ def bruteforce(nambulances):
     and arranges them so that there is maximum coverage among zones.
     '''
     maxcoverage = np.zeros(NODES)
-    for startingnodes in itertools.combinations(xrange(NODES), nambulances):
+    for startingnodes in itertools.combinations(xrange(NODES),
+                                                nambulances):
         covered = np.zeros(NODES)
         for target in xrange(NODES):
             for start in startingnodes:
-                covered[target] += min(zz_coverage[start, target], populations[target] - covered[target])
+                covered[target] += min(zz_coverage[start, target],
+                                       populations[target] - covered[target])
         if np.sum(covered) > np.sum(maxcoverage):
             optimal = startingnodes
             maxcoverage = covered
-    return (optimal, maxcoverage)
+    return ([i + 1 for i in optimal], maxcoverage)  # change 0 to 1-indexing
