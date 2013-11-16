@@ -6,7 +6,7 @@ traveltimes[i, j] is travel time from sector i to sector j.
 0-indexed, so watch out!
 '''
 traveltimes = np.array([[1, 8, 12, 14, 10, 16],
-                        [8, 1, 16, 18, 16, 16],
+                        [8, 1, 6, 18, 16, 16],
                         [12, 18, 1.5, 12, 6, 4],
                         [16, 14, 4, 1, 16, 12],
                         [18, 16, 10, 4, 2, 2],
