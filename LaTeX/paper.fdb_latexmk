@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex paper"] 1384617434 "paper.aux" "paper.bbl" "paper" 1384617435
+["bibtex paper"] 1384618714 "paper.aux" "paper.bbl" "paper" 1384618715
   "/usr/local/texlive/2012/texmf-dist/bibtex/bst/chicago/chicago.bst" 1198629289 37416 2ae04276c51f11eda70770f4081293b7 ""
   "bibliography.bib" 0 -1 0 ""
-  "paper.aux" 1384617435 1465 575e3a4facd4031bf3d4c2549c9729e4 ""
+  "paper.aux" 1384618715 1572 cb9116d02a967f5053ba780a182f8598 ""
   "paper.bcf" 0 -1 0 ""
   (generated)
   "paper.blg"
   "paper.bbl"
-["pdflatex"] 1384617434 "paper.tex" "paper.pdf" "paper" 1384617435
+["pdflatex"] 1384618714 "paper.tex" "paper.pdf" "paper" 1384618715
   "/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
   "/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -39,13 +39,12 @@
   "/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty" 1335995445 7075 bd0c34fbf1ae8fd1debd2a554e41b2d5 ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty" 1335995445 22417 c74ff4af6a1aa2b65d1924020edbbe11 ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def" 1306616590 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
-  "/usr/local/texlive/2012/texmf-dist/tex/latex/preprint/fullpage.sty" 1137110595 2789 05b418f78b224ec872f5b11081138605 ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/setspace/setspace.sty" 1324344192 22913 a27d7908fc6f0385466454a966a316eb ""
   "/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
-  "paper.aux" 1384617435 1465 575e3a4facd4031bf3d4c2549c9729e4 ""
+  "paper.aux" 1384618715 1572 cb9116d02a967f5053ba780a182f8598 ""
   "paper.bbl" 0 -1 0 "bibtex paper"
-  "paper.tex" 1384617434 13398 8a2c30088284ccfaedfc19f63ac89902 ""
-  "paper.toc" 1384617435 1109 2829d670e1fb37e2c9a2f905fff0cfec ""
+  "paper.tex" 1384618714 13444 bba15dbddfc6f4be271294e8797a9780 ""
+  "paper.toc" 1384618715 1198 495d0a514a41f51cd6051854d4f87e71 ""
   (generated)
   "paper.toc"
   "paper.pdf"
