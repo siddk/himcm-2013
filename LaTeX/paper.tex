@@ -111,14 +111,22 @@ zone-to-zone coverage.
 
 The function for zone-to-zone coverage in respect to travel time can be written out as 
 $$Z_{AB}(t) = P_B \int^v_{T_{AB} - \frac{b}{2}} B(t) dt$$
+
 In order to find the width of zone B, b, we can take the probability curve of differences in travel time within B, $F_B(s)$, and find the average travel time within B. This is the average difference in travel time, and is equal to $T_{B+}$. 
 $$T_{B+} = \int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} s F_B(s) ds$$
+
 The probability curve of differences in travel time within B, $F_B(s)$, can be found by performing a cross-correlation of $B(t)$ on itself, with $s$ being the difference in travel time plotted against frequency.
 $$P_B(s) =\int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} B(t) * B(t-s) dt$$
-The average travel time in the direction of A to B inside of A, $T_{A-}$, and the average travel time in the direction of B to A inside of A, $T_{A+}$, have a total average travel time of $T_A$.
+
+The average travel time in the direction of A to B inside of A, $T_{A-}$, and the average travel time in the direction of B to A inside of A, $T_{A+}$, have a total average travel time of $T_A$. We can also write the ratio of $T_{A+}$ and $T_{A-}$, which is equivalent to the ratio of $T_{BA}$ and $T_{AB}$. The same can be done with $T_{B}$.
 $$T_A = \frac{T_{A+} + T_{A-}}{2}$$
-We can also write the ratio of $T_{A+}$ and $T_{A-}$, which is equivalent to the ratio of $T_{BA}$ and $T_{AB}$.
-$$\frac{T_{A+}}{T_{A-}} = \frac{T_{BA}}{T_{AB}}$$
+$$\frac{T_{A+}}{T_{A-}} = \frac{T_{BA}}{T_{AB}}$$ 
+$$\frac{T_{B+}}{T_{B-}} = \frac{T_{AB}}{T_{BA}}$$
+
+This allows us to solve for $T_{A-}$  and $T_{B+}$.
+$$T_{A-} = \frac {2T_A}{1+ \frac{T_{BA}}{T_{AB}}}$$
+$$T_{B+} = \frac {2T_B}{1+ \frac{T_{AB}}{T_{BA}}}$$
+
 
 \subsection{Ambulance Distributon Optimization}
 Once the zone-to-zone coverages have been calculated, we must still decide where to place
