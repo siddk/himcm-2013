@@ -59,7 +59,7 @@ Then, consider a scenario in which a large scale disaster affects a single locat
         spacial position of the zones relative to each other, we cannot consider the ambulances
         being closer to one zone or another.
     \item[5. Partial Coverage] \hfill \\
-        Partial ambulance coverage of a zone will be treated as imcomplete even coverage over the entire
+        Partial ambulance coverage of a zone will be treated as incomplete even coverage over the entire
         zone. Because ambulances of ideal placement are unlikely to overlap in partial coverage, we assume
         that multiple ambulances will cover different areas of the zones, thus evening out coverage. (If partial coverages from multiple ambulances sum to above the total population of a zone,
         we assume that zone is completely covered by the ambulances.)
@@ -73,6 +73,7 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
 that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be hereafter referred to as zone-to-zone coverage.
 \begin{description}
+
     \item[$\mathbf{A(t), B(t)}$] \hfill \\
     	Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution
     \item[$\mathbf{Z_{AB}(t)}$] \hfill \\
@@ -87,10 +88,14 @@ that the ambulance can cover in a second zone from a first zone (not necessarily
     	Total population of B
     \item[$\mathbf{F_B(s)}$] \hfill \\
     	The probability curve for differences in travel time within B
+   \item[$\mathbf{T_A}$] \hfill \\
+    	Average travel time inside of A
     \item[$\mathbf{T_{A+}}$] \hfill \\
     	Average travel time in the direction of B to A inside of A
     \item[$\mathbf{T_{A-}}$] \hfill \\
     	Average travel time in the direction of A to B inside of A
+   \item[$\mathbf{T_B}$] \hfill \\
+    	Average travel time inside of B
     \item[$\mathbf{T_{B+}}$] \hfill \\
     	Average travel time in the direction of A to B inside of B
     \item[$\mathbf{T_{B-}}$] \hfill \\
@@ -109,9 +114,10 @@ In order to find the width of zone B, b, we can take the probability curve of di
 $$T_{B+} = \int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} s F_B(s) ds$$
 The probability curve of differences in travel time within B, $F_B(s)$, can be found by performing a cross-correlation of $B(t)$ on itself, with $s$ being the difference in travel time plotted against frequency.
 $$P_B(s) =\int^{T_{AB} + \frac{b}{2}}_{T_{AB} - \frac{b}{2}} B(t) * B(t-s) dt$$
-The average travel time in the direction of A to B inside of A, $T_{A-}$, and the average travel time in the direction of B to A inside of A, $T_{A+}$, average out 
-
-the average travel time in the direction of A to B inside of B, $T_{B+}$, can be cal
+The average travel time in the direction of A to B inside of A, $T_{A-}$, and the average travel time in the direction of B to A inside of A, $T_{A+}$, have a total average travel time of $T_A$.
+$$T_A = \frac{T_{A+} + T_{A-}}{2}$$
+We can also write the ratio of $T_{A+}$ and $T_{A-}$, which is equivalent to the ratio of $T_{BA}$ and $T_{AB}$.
+$$\frac{T_{A+}}{T_{A-}} = \frac{T_{BA}}{T_{AB}}$$
 
 \subsection{Ambulance Distributon Optimization}
 Once the zone-to-zone coverages have been calculated, we must still decide where to place
