@@ -14,8 +14,8 @@
 \restylefloat{table}
 \restylefloat{figure}
 \usepackage{setspace}
-\usepackage{minted}
-\usemintedstyle{colorful}
+% \usepackage{minted}
+% \usemintedstyle{colorful}
 \graphicspath{{./Pictures/}}
 
 \pagestyle{fancy}
@@ -111,6 +111,23 @@ A lack of spatial understanding of the county entails the use of a different typ
 
 The population that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be referred to as zone-to-zone coverage.
 \newpage
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=4in]{A(t)B(t).png}
+\caption{An2 example of a zone's population density as a function of travel time from another zone.}
+\label{A(t)B(t)}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=4in]{6point.pdf}
+\caption{An2 example of a zone's population density as a function of travel time from another zone.}
+\label{A(t)B(t)}
+\end{center}
+\end{figure}
+
 \begin{description}
     \item[$\mathbf{A(t), B(t)}$] \hfill \\
     	Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution
@@ -313,7 +330,7 @@ this methodology is realistically the one an Emergency Service Coordinator would
 \section{Code}
 The following contains the code for both our brute force location optimizer, as well as the greedy optimizer. Both functions take a parameter $nambulances$, representing the total number of ambulances we have to allocate across the county.
 
-\inputminted[fontsize=\footnotesize]{python}{../Code/optimizer.py}
+% \inputminted[fontsize=\footnotesize]{python}{../Code/optimizer.py}
 
 
 
