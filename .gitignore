@@ -1,4 +1,5 @@
-*.py[cod]
+*
+py[cod]
 
 # C extensions
 *.so
@@ -29,6 +30,7 @@ nosetests.xml
 
 # Mac Files
 .DS_Store
+.pdf
 
 # Translations
 *.mo
@@ -62,3 +64,6 @@ nosetests.xml
 *.mtc1
 *.out
 *.synctex.gz
+
+# PDFs
+*.pdf
