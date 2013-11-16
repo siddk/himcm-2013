@@ -60,10 +60,9 @@ def reach(start, target):
     return round(integrate(PROB_CURVE(wb, t), (t, bstart, bend)) * populations[target])
 
 
-def calcreaches():
-    for i in xrange(NODES):
-        for j in xrange(NODES):
-            reaches[i, j] = reach(i, j)
+for i in xrange(NODES):
+    for j in xrange(NODES):
+        reaches[i, j] = reach(i, j)
 
 
 def greedyoptimize(nambulances):
@@ -73,6 +72,8 @@ def greedyoptimize(nambulances):
         maxreach = 0
         bestnode = 0
         for start in xrange(NODES):
+            if start in startnodes:
+                continue  # don't duplicate
             reach = 0
             for target in xrange(NODES):
                 reach += min(reaches[start, target], populations[target] - reached[target])
@@ -81,16 +82,18 @@ def greedyoptimize(nambulances):
                 bestnode = start
         startnodes[i] = bestnode
         for target in xrange(NODES):
-            reached[target] += min(reaches[start, target], populations[target] - reached[target])
+            reached[target] += min(reaches[bestnode, target], populations[target] - reached[target])
     return (startnodes, reached)
 
 
 def bruteforce(nambulances):
-    maxreach = 0
+    maxreach = np.zeros(1)
     for startingnodes in itertools.combinations(xrange(NODES), nambulances):
-        totalreach = 0
-        for i in xrange(NODES):
-            totalreach += min(populations[i], sum([reaches[a, i] for a in startingnodes]))
-        if totalreach > maxreach:
+        reached = np.zeros(NODES)
+        for target in xrange(NODES):
+            for start in startingnodes:
+                reached[target] += min(reaches[start, target], populations[target] - reached[target])
+        if np.sum(reached) > np.sum(maxreach):
             optimal = startingnodes
-    return optimal
+            maxreach = reached
+    return (optimal, maxreach)
