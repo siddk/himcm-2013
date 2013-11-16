@@ -347,13 +347,53 @@ this methodology is realistically the one an Emergency Service Coordinator would
 
 \newpage
 \section{Non-Technical Memo}
-A county with a six zones needs to maximize the number of people that can be reached within eight minutes using its three ambulances. Given the average amount of time necessary to travel  between each of the zones, we must develop an algorithm for determining the optimal placement of the ambulances.
+To whom it may concern,
+After looking at several scenarios, and forming a strategic model, we believe that we have some
+suggestions for you regarding how to optimize ambulance placement across zones in your county.
 
-In order to solve this problem, we first needed to develop a firm understanding of how many people a single ambulance can reach within eight minutes. In order to get an accurate representation of how many people an ambulance can actually reach, we took into account the fact that a zone is has an area and that the population of a zone is spread out over its entire area. While we assumed that the population density is linear, we designed our solution to be flexible enough to implement  any  symmetrical population distribution.
+To us, it seems that the problem is as follows:  A county with a six zones needs to maximize the
+number of people that can be reached within eight minutes using its three ambulances. Given the
+average amount of time necessary to travel between each of the zones, we must determine the optimal
+placement of the ambulances to meet the three conditions.
 
-Because distance in this scenario is unknown, we are forced to use another unit to represent the population density. Given that we want to travel from zone A to zone B, we chose to model the population density of zone B as a function of travel time from zone A. Using this function, we were able to calculate the time it would take to travel through all of B (the width) and the number of people covered in B per travel time away from A. By taking the number of people covered and the given travel times between each of the zones, we were able to calculate the theoretical number of people reachable within eight minutes by an ambulance for each zone.
+In order to solve this problem, we first needed to develop a firm understanding of how many people
+a single ambulance can reach within eight minutes. To get an accurate representation of how many
+people an ambulance can actually reach, we took into account the fact that a zone has an area and
+that instead of being concentrated at one specific point, the population of a zone is spread out
+over its entire area. For our purposes, we assumed that the population density distribution was linear,
+but without some additional data, it is impossible for us to draw any significant conclusions about
+what it should be. However, we designed our solution to be flexible enough to implement any
+symmetrical population distribution, thereby ensuring that our model will work regardless of the data provided.
 
-After calculating the maximum number of people coverable by one ambulance, we still need to figure out where we should put the ambulances to cover the most people. We approach this problem in two ways: we use a brute-force method, enumerating all possible combinations of ambulance positions, and picking the one that covered the most people; we also create a greedy heuristic, which doesn’t necessarily pick the optimal solution but runs much more quickly than the brute-force algorithm, and has proven to be very robust as well.
+Because distance in this scenario is an unknown quantity (We are only given travel times in the data
+provided to us), we are forced to use another unit to represent the population density. Given that we
+want to travel from zone A to zone B, we chose to model the population density of zone B as a function
+of travel time from zone A. Using this function, we were able to calculate how many people we would be
+able to reach in B (within a timespan of eight minutes) from A. By taking the number of people covered
+and the given travel times between each of the zones, we were able to calculate how many people an
+ambulance could reach in an eight minute period from any zone A.
+
+After computing this quantity, we still need to figure out where we should put the ambulances to cover
+the most people. We approach this problem in two ways: first, we use a brute-force method, enumerating
+all possible combinations of ambulance positions, and picking the one that covered the most people
+(finding us the optimal solution); second, using our brute-force algorithm as a base, we create a greedy
+heuristic, which finds a solution relatively quickly in comparison, especially for larger cities/more
+ambulances. However, while the brute-force algorithm is guaranteed to pick the optimal solution, the greedy
+heuristic is only guaranteed to find a good one. Yet, especially when this problem is scaled up to multiple
+zones or counties, the greedy heuristic proves to be superior than the brute-force algorithm, with a high
+level of efficacy and precision.
+
+When applied to the county at hand, the greedy heuristic succeeded in finding a solution. Better yet, when
+compared to the brute-force algorithm, we found that the two methods yielded identical solutions, meaning that
+the greedy algorithm found the optimal solution as well. The results are as follows: For 3 ambulances across
+the county, we split them between zones 1, 2, and 5; this allows us to cover all of zones 1-2, 4-6 and 94\%
+of zone 3, covering 99.4\% of the county population-wise in eight minutes. If one or two ambulances are busy,
+the other two ambulances should be relocated to zones 5 and 2; ambulances in zones 5 and 2 will cover 90.1\%
+of the county, and a single ambulance in zone 2 will cover 49.4\% of the county. These results indicate that
+a majority of the county will be covered at any given time, and that all citizens can be reached in under 8 minutes.
+
+With these suggestions in mind, I hope you take the necessary steps to implement our solution in this county,
+and perhaps in others as well.
 
 \newpage
 \appendix
