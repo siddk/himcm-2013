@@ -46,15 +46,15 @@ def reach(start, target):
     Calculates reach of a single ambulance for a district
     '''
     #taa = traveltimes[start, start]
-tbb = traveltimes[target, target]
-tab = traveltimes[start, target]
-tba = traveltimes[target, start]
-#taam = 2 * taa / (1 + tba / tab)
-tbbp = 2 * tbb / (1 + tab / tba)
-#wa = sp.solve(expected_value - taam)[0]
-wb = sp.solve(expected_value - tbbp)[0]
-bstart = -wb / 2
-bend = min(wb / 2, MAX_TIME - tab)
+    tbb = traveltimes[target, target]
+    tab = traveltimes[start, target]
+    tba = traveltimes[target, start]
+    #taam = 2 * taa / (1 + tba / tab)
+    tbbp = 2 * tbb / (1 + tab / tba)
+    #wa = sp.solve(expected_value - taam)[0]
+    wb = sp.solve(expected_value - tbbp)[0]
+    bstart = -wb / 2
+    bend = min(wb / 2, MAX_TIME - tab)
     if bstart > bend:
         return 0
     return round(integrate(PROB_CURVE(wb, t), (t, bstart, bend)) * populations[target])
