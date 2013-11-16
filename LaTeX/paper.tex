@@ -69,6 +69,18 @@ Then, consider a scenario in which a large scale disaster affects a single locat
 An ambulance stationed in one zone may have full, partial, or no coverage of another zone. The population
 that the ambulance can cover in a second zone from a first zone (not necessarily distinct), will be hereafter referred to as
 zone-to-zone coverage.
+\begin{description}
+    \item[A(t) and B(t)] Zones A and B are two zones separated by a gap. Each zone has a width and a population distribution.
+    \item[v] required ambulance response time
+    \item[T_{AB}] travel time from A to B, given
+    \item[T_{BA}] travel time from B to A, given
+    \item[P_B] total population of B
+    \item[T_{A-}] travel time inside of A traveling toward B
+    \item[T_{B+}] travel time inside of B traveling away from A
+    \item[a and b] width of A and B respectively
+    \item[g] width of the gap between A and B
+\end{description}
+
 
 \subsection{Ambulance Distributor}
 Once the zone-to-zone coverages have been
