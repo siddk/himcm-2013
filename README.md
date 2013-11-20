@@ -1,5 +1,10 @@
-himcm-2013
+HiMCM 2013-2014
 ==========
+
+This repository contains our paper, as well as all of our code and other research for the HiMCM 2013, Problem A.
+
+Abstract
+----------
 
 The continental United States is divided into several states, counties, and districts all with their own populations, geography, and needs. We were provided with one such county and asked to find the most efficient allocation of ambulances in order to maximize the number of people who could be reached in under a certain response time. Using only the county’s demographics and the average travel times between the county’s zones, we devised a model to determine in which zones ambulances should be placed. This model is both scalable and efficient, and can be applied to every county, regardless of size or population distribution.
 
